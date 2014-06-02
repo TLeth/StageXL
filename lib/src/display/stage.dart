@@ -82,8 +82,8 @@ class Stage extends DisplayObjectContainer {
   int _sourceWidth = 0;
   int _sourceHeight = 0;
   int _frameRate = 30;
-  num _stageWidth = 0.0;
-  num _stageHeight = 0.0;
+  int _stageWidth = 0;
+  int _stageHeight = 0;
   Rectangle<num> _contentRectangle = new Rectangle<num>(0.0, 0.0, 0.0, 0.0);
 
   Matrix _clientTransformation = new Matrix.fromIdentity();
@@ -355,8 +355,8 @@ class Stage extends DisplayObjectContainer {
   _updateCanvasSize() {
 
     var client = _canvas.getBoundingClientRect();
-    var clientLeft = _canvas.clientLeft + client.left;
-    var clientTop = _canvas.clientTop + client.top;
+    var clientLeft = _canvas.clientLeft + client.left.round();
+    var clientTop = _canvas.clientTop + client.top.round();
     var clientWidth = _canvas.clientWidth;
     var clientHeight = _canvas.clientHeight;
     var sourceWidth = _sourceWidth;
