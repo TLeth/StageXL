@@ -4,9 +4,7 @@ class TextureAtlas {
 
   final List<TextureAtlasFrame> frames = new List<TextureAtlasFrame>();
 
-  static Future<TextureAtlas> load(
-      String url, TextureAtlasFormat textureAtlasFormat, [
-      BitmapDataLoadOptions bitmapDataLoadOptions]) {
+  static Future<TextureAtlas> load(String url, TextureAtlasFormat textureAtlasFormat, [BitmapDataLoadOptions bitmapDataLoadOptions]) {
 
     return textureAtlasFormat.load(url, bitmapDataLoadOptions);
   }
@@ -17,7 +15,7 @@ class TextureAtlas {
 
   BitmapData getBitmapData(String name) {
 
-    for(int i = 0; i < frames.length; i++) {
+    for (int i = 0; i < frames.length; i++) {
       var frame = frames[i];
       if (frame.name == name) return frame.getBitmapData();
     }
@@ -31,7 +29,7 @@ class TextureAtlas {
 
     var bitmapDataList = new List<BitmapData>();
 
-    for(int i = 0; i < frames.length; i++) {
+    for (int i = 0; i < frames.length; i++) {
       var frame = frames[i];
       if (frame.name.startsWith(namePrefix)) {
         bitmapDataList.add(frame.getBitmapData());

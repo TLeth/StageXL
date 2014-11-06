@@ -9,12 +9,12 @@ class SoundSpriteSegment {
   final num _duration;
   final bool _loop;
 
-  SoundSpriteSegment(SoundSprite soundSprite, String name, num start, num duration, bool loop) :
-    _soundSprite = soundSprite,
-    _name = name,
-    _start = start,
-    _duration = duration,
-    _loop = loop;
+  SoundSpriteSegment(SoundSprite soundSprite, String name, num start, num duration, bool loop)
+      : _soundSprite = soundSprite,
+        _name = name,
+        _start = start,
+        _duration = duration,
+        _loop = loop;
 
   //-------------------------------------------------------------------------------------------------
 

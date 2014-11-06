@@ -15,14 +15,12 @@ class AudioElementSoundChannel extends SoundChannel {
   Duration _segmentDuration;
   Timer _segmentTimer;
 
-  AudioElementSoundChannel(AudioElementSound audioElementSound,
-      num startTime, num duration, bool loop, SoundTransform soundTransform) :
-
-      _audioElementSound = audioElementSound,
-      _segmentStartTime = startTime,
-      _segmentDuration = new Duration(milliseconds: (duration * 1000).round()),
-      _loop = loop,
-      _soundTransform = (soundTransform != null) ? soundTransform : new SoundTransform() {
+  AudioElementSoundChannel(AudioElementSound audioElementSound, num startTime, num duration, bool loop, SoundTransform soundTransform)
+      : _audioElementSound = audioElementSound,
+        _segmentStartTime = startTime,
+        _segmentDuration = new Duration(milliseconds: (duration * 1000).round()),
+        _loop = loop,
+        _soundTransform = (soundTransform != null) ? soundTransform : new SoundTransform() {
 
     audioElementSound._requestAudioElement(this).then(_onAudioElement);
   }

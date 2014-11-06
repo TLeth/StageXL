@@ -1,6 +1,6 @@
 part of stagexl.toolkit;
 
-/// **Note:** This class is not intended to be used directly. It is needed by 
+/// **Note:** This class is not intended to be used directly. It is needed by
 /// the 'Toolkit for Dart' to export from Flash Professional to Dart/StageXL.
 class ButtonHelper {
 

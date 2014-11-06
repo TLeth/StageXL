@@ -30,12 +30,6 @@ class BitmapDataLoadOptions {
   /// the server. The global [BitmapData.defaultLoadOptions] object
   /// it the default for all loading operations.
   ///
-  BitmapDataLoadOptions({
-    this.png: true,
-    this.jpg: true,
-    this.webp: false,
-    this.autoHiDpi: true,
-    this.corsEnabled: false
-  });
+  BitmapDataLoadOptions({this.png: true, this.jpg: true, this.webp: false, this.autoHiDpi: true, this.corsEnabled: false});
 }
 

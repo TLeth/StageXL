@@ -32,10 +32,7 @@ class CanvasShadowWrapper extends DisplayObject {
   num shadowOffsetY;
   num shadowBlur;
 
-  CanvasShadowWrapper(this.displayObject, [
-    this.shadowColor = Color.Black,
-    this.shadowOffsetX = 10.0, this.shadowOffsetY = 10.0,
-    this.shadowBlur = 0.0]);
+  CanvasShadowWrapper(this.displayObject, [this.shadowColor = Color.Black, this.shadowOffsetX = 10.0, this.shadowOffsetY = 10.0, this.shadowBlur = 0.0]);
 
   //-----------------------------------------------------------------------------------------------
 
@@ -43,17 +40,39 @@ class CanvasShadowWrapper extends DisplayObject {
     throw new UnsupportedError("CanvasShadowWrapper does not implement this property or method.");
   }
 
-  void set x(num value) { _throwUnsupportedError(); }
-  void set y(num value) { _throwUnsupportedError(); }
-  void set pivotX(num value) { _throwUnsupportedError(); }
-  void set pivotY(num value) { _throwUnsupportedError(); }
-  void set scaleX(num value) { _throwUnsupportedError(); }
-  void set scaleY(num value) { _throwUnsupportedError(); }
-  void set skewX(num value) { _throwUnsupportedError(); }
-  void set skewY(num value) { _throwUnsupportedError(); }
-  void set rotation(num value) { _throwUnsupportedError(); }
-  void set alpha(num value) { _throwUnsupportedError(); }
-  void set mask(Mask mask) { _throwUnsupportedError(); }
+  void set x(num value) {
+    _throwUnsupportedError();
+  }
+  void set y(num value) {
+    _throwUnsupportedError();
+  }
+  void set pivotX(num value) {
+    _throwUnsupportedError();
+  }
+  void set pivotY(num value) {
+    _throwUnsupportedError();
+  }
+  void set scaleX(num value) {
+    _throwUnsupportedError();
+  }
+  void set scaleY(num value) {
+    _throwUnsupportedError();
+  }
+  void set skewX(num value) {
+    _throwUnsupportedError();
+  }
+  void set skewY(num value) {
+    _throwUnsupportedError();
+  }
+  void set rotation(num value) {
+    _throwUnsupportedError();
+  }
+  void set alpha(num value) {
+    _throwUnsupportedError();
+  }
+  void set mask(Mask mask) {
+    _throwUnsupportedError();
+  }
 
   //-----------------------------------------------------------------------------------------------
 

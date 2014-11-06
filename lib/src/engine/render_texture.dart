@@ -54,9 +54,7 @@ class RenderTexture {
     _quad = new RenderTextureQuad(this, 0, 0, 0, 0, 0, _width, _height);
     _texture = null;
 
-    _canvas.context2D.drawImageScaledFromSource(imageElement,
-        0, 0, imageElement.width, imageElement.height,
-        0, 0, _storeWidth, _storeHeight);
+    _canvas.context2D.drawImageScaledFromSource(imageElement, 0, 0, imageElement.width, imageElement.height, 0, 0, _storeWidth, _storeHeight);
   }
 
   RenderTexture.fromRenderFrameBuffer(RenderFrameBuffer renderFrameBuffer, num storePixelRatio) {
@@ -80,15 +78,13 @@ class RenderTexture {
 
   //-----------------------------------------------------------------------------------------------
 
-  static Future<RenderTexture> load(
-      String url, bool autoHiDpi, bool webpAvailable, bool corsEnabled) {
+  static Future<RenderTexture> load(String url, bool autoHiDpi, bool webpAvailable, bool corsEnabled) {
 
     var hiDpi = autoHiDpi && url.contains("@1x.");
     var hiDpiUrl = hiDpi ? url.replaceAll("@1x.", "@2x.") : url;
     var imageLoader = new ImageLoader(hiDpiUrl, webpAvailable, corsEnabled);
 
-    return imageLoader.done.then((image) =>
-        new RenderTexture.fromImage(image, hiDpi ? 2.0 : 1.0));
+    return imageLoader.done.then((image) => new RenderTexture.fromImage(image, hiDpi ? 2.0 : 1.0));
   }
 
   //-----------------------------------------------------------------------------------------------

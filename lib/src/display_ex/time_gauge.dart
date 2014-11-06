@@ -19,8 +19,7 @@ class TimeGauge extends Gauge implements Animatable {
   Map<String, num> _alarms;
   bool _alarmsEnabled = true;
 
-  TimeGauge(num time, BitmapData bitmapData, [String direction =
-      Gauge.DIRECTION_LEFT]) : super(bitmapData, direction) {
+  TimeGauge(num time, BitmapData bitmapData, [String direction = Gauge.DIRECTION_LEFT]) : super(bitmapData, direction) {
 
     if (time <= 0) throw new ArgumentError('Time must be greater than zero');
     _totalTime = time;

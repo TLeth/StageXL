@@ -4,9 +4,9 @@ part of stagexl.events;
 typedef void EventListener<T extends Event>(T event);
 
 /// A subscription on events from an [EventStream].
-/// 
-/// The subscription provides events to the listener, and holds the callbacks 
-/// used to handle the events. The subscription can also be used to unsubscribe 
+///
+/// The subscription provides events to the listener, and holds the callbacks
+/// used to handle the events. The subscription can also be used to unsubscribe
 /// from the events, or to temporarily pause the events from the stream.
 class EventStreamSubscription<T extends Event> extends StreamSubscription<T> {
 
@@ -18,8 +18,7 @@ class EventStreamSubscription<T extends Event> extends StreamSubscription<T> {
   EventStream<T> _eventStream;
   EventListener<T> _eventListener;
 
-  EventStreamSubscription._internal(
-      this._eventStream, this._eventListener, this._captures, this._priority);
+  EventStreamSubscription._internal(this._eventStream, this._eventListener, this._captures, this._priority);
 
   //-----------------------------------------------------------------------------------------------
 
@@ -38,7 +37,7 @@ class EventStreamSubscription<T extends Event> extends StreamSubscription<T> {
   void onData(void handleData(T event)) {
     _eventListener = handleData;
   }
-  
+
   @override
   void onError(void handleError(error)) {
     // This stream has no errors.

@@ -18,8 +18,7 @@ class BitmapData implements BitmapDrawable {
 
   //-------------------------------------------------------------------------------------------------
 
-  BitmapData(int width, int height, [
-      bool transparent = true, int fillColor = 0xFFFFFFFF, num pixelRatio = 1.0]) {
+  BitmapData(int width, int height, [bool transparent = true, int fillColor = 0xFFFFFFFF, num pixelRatio = 1.0]) {
 
     _width = ensureInt(width);
     _height = ensureInt(height);
@@ -111,8 +110,7 @@ class BitmapData implements BitmapDrawable {
    * margin parameter (in pixel).
    */
 
-  List<BitmapData> sliceIntoFrames(int frameWidth, int frameHeight, {
-    int frameCount: null, int frameSpacing: 0, int frameMargin: 0 }) {
+  List<BitmapData> sliceIntoFrames(int frameWidth, int frameHeight, {int frameCount: null, int frameSpacing: 0, int frameMargin: 0}) {
 
     var cols = (_width - frameMargin + frameSpacing) ~/ (frameWidth + frameSpacing);
     var rows = (_height - frameMargin + frameSpacing) ~/ (frameHeight + frameSpacing);
@@ -120,7 +118,7 @@ class BitmapData implements BitmapDrawable {
 
     frameCount = (frameCount == null) ? rows * cols : min(frameCount, rows * cols);
 
-    for(var f = 0; f < frameCount; f++) {
+    for (var f = 0; f < frameCount; f++) {
       var x = f % cols;
       var y = f ~/ cols;
       var frameLeft = frameMargin + x * (frameWidth + frameSpacing);

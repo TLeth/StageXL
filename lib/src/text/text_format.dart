@@ -23,29 +23,11 @@ class TextFormat {
 
   //-------------------------------------------------------------------------------------------------
 
-  TextFormat(this.font, this.size, this.color, {
-    this.strokeWidth  : 0.0,
-    this.strokeColor  : Color.Black,
-    this.fillGradient : null,
-    this.bold         : false,
-    this.italic       : false,
-    this.underline    : false,
-    this.align        : "left",
-    this.topMargin    : 0.0,
-    this.bottomMargin : 0.0,
-    this.leftMargin   : 0.0,
-    this.rightMargin  : 0.0,
-    this.indent       : 0.0,
-    this.leading      : 0.0
-  });
+  TextFormat(this.font, this.size, this.color, {this.strokeWidth: 0.0, this.strokeColor: Color.Black, this.fillGradient: null, this.bold: false, this.italic: false, this.underline: false, this.align: "left", this.topMargin: 0.0, this.bottomMargin: 0.0, this.leftMargin: 0.0, this.rightMargin: 0.0, this.indent: 0.0, this.leading: 0.0});
 
   //-------------------------------------------------------------------------------------------------
 
-  TextFormat clone() => new TextFormat(font, size, color,
-      strokeWidth: strokeWidth, strokeColor: strokeColor, fillGradient: fillGradient,
-      bold: bold, italic: italic, underline: underline, align: align,
-      topMargin: topMargin, bottomMargin: bottomMargin, leftMargin: leftMargin, rightMargin: rightMargin,
-      indent: indent, leading: leading);
+  TextFormat clone() => new TextFormat(font, size, color, strokeWidth: strokeWidth, strokeColor: strokeColor, fillGradient: fillGradient, bold: bold, italic: italic, underline: underline, align: align, topMargin: topMargin, bottomMargin: bottomMargin, leftMargin: leftMargin, rightMargin: rightMargin, indent: indent, leading: leading);
 
   //-------------------------------------------------------------------------------------------------
 

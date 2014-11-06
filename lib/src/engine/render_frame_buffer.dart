@@ -14,15 +14,14 @@ class RenderFrameBuffer {
   int _height;
   int _stencilDepth = 0;
 
-  RenderFrameBuffer(RenderContextWebGL renderContext, int width, int height) :
-
-    _width = width,
-    _height = height,
-    _renderContext = renderContext,
-    _renderingContext = renderContext.rawContext,
-    _framebuffer = renderContext.rawContext.createFramebuffer(),
-    _renderbuffer = renderContext.rawContext.createRenderbuffer(),
-    _texture = renderContext.rawContext.createTexture() {
+  RenderFrameBuffer(RenderContextWebGL renderContext, int width, int height)
+      : _width = width,
+        _height = height,
+        _renderContext = renderContext,
+        _renderingContext = renderContext.rawContext,
+        _framebuffer = renderContext.rawContext.createFramebuffer(),
+        _renderbuffer = renderContext.rawContext.createRenderbuffer(),
+        _texture = renderContext.rawContext.createTexture() {
 
     // http://www.songho.ca/opengl/gl_fbo.html
     // Switching the texture of the FBO is faster than switching FBO itself?! We will try this later.
@@ -89,7 +88,7 @@ class RenderFrameBuffer {
       _renderingContext.bindTexture(gl.TEXTURE_2D, null);
 
       _renderingContext.bindRenderbuffer(gl.RENDERBUFFER, _renderbuffer);
-      _renderingContext.renderbufferStorage(gl.RENDERBUFFER, gl.DEPTH_STENCIL , _width, _height);
+      _renderingContext.renderbufferStorage(gl.RENDERBUFFER, gl.DEPTH_STENCIL, _width, _height);
       _renderingContext.bindRenderbuffer(gl.RENDERBUFFER, null);
 
       _renderTexture = new RenderTexture.fromRenderFrameBuffer(this, 1.0);

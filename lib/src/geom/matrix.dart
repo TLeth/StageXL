@@ -38,13 +38,13 @@ class Matrix {
 
   Matrix cloneInvert() {
 
-    num det =  this.det;
-    num a =    this.d / det;
-    num b =  - this.b / det;
-    num c =  - this.c / det;
-    num d =    this.a / det;
-    num tx = - this.tx * a - this.ty * c;
-    num ty = - this.tx * b - this.ty * d;
+    num det = this.det;
+    num a = this.d / det;
+    num b = -this.b / det;
+    num c = -this.c / det;
+    num d = this.a / det;
+    num tx = -this.tx * a - this.ty * c;
+    num ty = -this.tx * b - this.ty * d;
 
     return new Matrix(a, b, c, d, tx, ty);
   }
@@ -52,28 +52,28 @@ class Matrix {
   //-------------------------------------------------------------------------------------------------
   //-------------------------------------------------------------------------------------------------
 
-  num get a =>  _data[0];
-  void set a (num n){
+  num get a => _data[0];
+  void set a(num n) {
     _data[0] = n.toDouble();
   }
-  num get b =>  _data[1];
-  void set b (num n){
+  num get b => _data[1];
+  void set b(num n) {
     _data[1] = n.toDouble();
   }
-  num get c =>  _data[2];
-  void set c (num n){
+  num get c => _data[2];
+  void set c(num n) {
     _data[2] = n.toDouble();
   }
-  num get d =>  _data[3];
-  void set d (num n){
+  num get d => _data[3];
+  void set d(num n) {
     _data[3] = n.toDouble();
   }
   num get tx => _data[4];
-  void set tx (num n){
+  void set tx(num n) {
     _data[4] = n.toDouble();
   }
   num get ty => _data[5];
-  void set ty (num n){
+  void set ty(num n) {
     _data[5] = n.toDouble();
   }
 
@@ -147,9 +147,9 @@ class Matrix {
     if (left > x4) left = x4;
 
     num top = y1;
-    if (top > y2 ) top = y2;
-    if (top > y3 ) top = y3;
-    if (top > y4 ) top = y4;
+    if (top > y2) top = y2;
+    if (top > y3) top = y3;
+    if (top > y4) top = y4;
 
     num right = x1;
     if (right < x2) right = x2;
@@ -157,9 +157,9 @@ class Matrix {
     if (right < x4) right = x4;
 
     num bottom = y1;
-    if (bottom < y2 ) bottom = y2;
-    if (bottom < y3 ) bottom = y3;
-    if (bottom < y4 ) bottom = y4;
+    if (bottom < y2) bottom = y2;
+    if (bottom < y3) bottom = y3;
+    if (bottom < y4) bottom = y4;
 
     num width = right - left;
     num heigth = bottom - top;
@@ -174,8 +174,7 @@ class Matrix {
 
   //-------------------------------------------------------------------------------------------------
 
-  void createBox(num scaleX, num scaleY, [
-    num rotation = 0.0, num translationX = 0.0, num translationY = 0.0]) {
+  void createBox(num scaleX, num scaleY, [num rotation = 0.0, num translationX = 0.0, num translationY = 0.0]) {
 
     this.identity();
     this.scale(scaleX, scaleY);
@@ -198,20 +197,20 @@ class Matrix {
 
   void invert() {
 
-    num a =   this.a;
-    num b =   this.b;
-    num c =   this.c;
-    num d =   this.d;
-    num tx =  this.tx;
-    num ty =  this.ty;
+    num a = this.a;
+    num b = this.b;
+    num c = this.c;
+    num d = this.d;
+    num tx = this.tx;
+    num ty = this.ty;
     num det = this.det;
 
-    _data[0] =   d / det;
-    _data[1] = - b / det;
-    _data[2] = - c / det;
-    _data[3] =   a / det;
-    _data[4] = - tx * _data[0] - ty * _data[2];
-    _data[5] = - tx * _data[1] - ty * _data[3];
+    _data[0] = d / det;
+    _data[1] = -b / det;
+    _data[2] = -c / det;
+    _data[3] = a / det;
+    _data[4] = -tx * _data[0] - ty * _data[2];
+    _data[5] = -tx * _data[1] - ty * _data[3];
   }
 
   //-------------------------------------------------------------------------------------------------
@@ -221,10 +220,10 @@ class Matrix {
     num cosR = cos(rotation);
     num sinR = sin(rotation);
 
-    num a =  this.a;
-    num b =  this.b;
-    num c =  this.c;
-    num d =  this.d;
+    num a = this.a;
+    num b = this.b;
+    num c = this.c;
+    num d = this.d;
     num tx = this.tx;
     num ty = this.ty;
 
@@ -245,10 +244,10 @@ class Matrix {
     num sinY = sin(skewY);
     num cosY = cos(skewY);
 
-    num a =  this.a;
-    num b =  this.b;
-    num c =  this.c;
-    num d =  this.d;
+    num a = this.a;
+    num b = this.b;
+    num c = this.c;
+    num d = this.d;
     num tx = this.tx;
     num ty = this.ty;
 
@@ -317,17 +316,17 @@ class Matrix {
 
   void copyFromAndConcat(Matrix copyMatrix, Matrix concatMatrix) {
 
-    num a1 =  copyMatrix.a;
-    num b1 =  copyMatrix.b;
-    num c1 =  copyMatrix.c;
-    num d1 =  copyMatrix.d;
+    num a1 = copyMatrix.a;
+    num b1 = copyMatrix.b;
+    num c1 = copyMatrix.c;
+    num d1 = copyMatrix.d;
     num tx1 = copyMatrix.tx;
     num ty1 = copyMatrix.ty;
 
-    num a2 =  concatMatrix.a;
-    num b2 =  concatMatrix.b;
-    num c2 =  concatMatrix.c;
-    num d2 =  concatMatrix.d;
+    num a2 = concatMatrix.a;
+    num b2 = concatMatrix.b;
+    num c2 = concatMatrix.c;
+    num d2 = concatMatrix.d;
     num tx2 = concatMatrix.tx;
     num ty2 = concatMatrix.ty;
 
@@ -343,18 +342,18 @@ class Matrix {
 
   void invertAndConcat(Matrix concatMatrix) {
 
-    num det =   this.det;
-    num a1 =    this.d / det;
-    num b1 =  - this.b / det;
-    num c1 =  - this.c / det;
-    num d1 =    this.a / det;
-    num tx1 = - this.tx * a1 - this.ty * c1;
-    num ty1 = - this.tx * b1 - this.ty * d1;
+    num det = this.det;
+    num a1 = this.d / det;
+    num b1 = -this.b / det;
+    num c1 = -this.c / det;
+    num d1 = this.a / det;
+    num tx1 = -this.tx * a1 - this.ty * c1;
+    num ty1 = -this.tx * b1 - this.ty * d1;
 
-    num a2 =  concatMatrix.a;
-    num b2 =  concatMatrix.b;
-    num c2 =  concatMatrix.c;
-    num d2 =  concatMatrix.d;
+    num a2 = concatMatrix.a;
+    num b2 = concatMatrix.b;
+    num c2 = concatMatrix.c;
+    num d2 = concatMatrix.d;
     num tx2 = concatMatrix.tx;
     num ty2 = concatMatrix.ty;
 
@@ -370,20 +369,20 @@ class Matrix {
 
   void copyFromAndInvert(Matrix matrix) {
 
-    num a =   matrix.a;
-    num b =   matrix.b;
-    num c =   matrix.c;
-    num d =   matrix.d;
-    num tx =  matrix.tx;
-    num ty =  matrix.ty;
+    num a = matrix.a;
+    num b = matrix.b;
+    num c = matrix.c;
+    num d = matrix.d;
+    num tx = matrix.tx;
+    num ty = matrix.ty;
     num det = matrix.det;
 
-    _data[0] =   d / det;
-    _data[1] = - b / det;
-    _data[2] = - c / det;
-    _data[3] =   a / det;
-    _data[4] = - tx * _data[0] - ty * _data[2];
-    _data[5] = - tx * _data[1] - ty * _data[3];
+    _data[0] = d / det;
+    _data[1] = -b / det;
+    _data[2] = -c / det;
+    _data[3] = a / det;
+    _data[4] = -tx * _data[0] - ty * _data[2];
+    _data[5] = -tx * _data[1] - ty * _data[3];
   }
 
 }

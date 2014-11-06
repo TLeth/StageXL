@@ -31,9 +31,7 @@ class BlurFilter extends BitmapFilter {
 
   void apply(BitmapData bitmapData, [Rectangle<int> rectangle]) {
 
-    RenderTextureQuad renderTextureQuad = rectangle == null
-        ? bitmapData.renderTextureQuad
-        : bitmapData.renderTextureQuad.cut(rectangle);
+    RenderTextureQuad renderTextureQuad = rectangle == null ? bitmapData.renderTextureQuad : bitmapData.renderTextureQuad.cut(rectangle);
 
     ImageData imageData = renderTextureQuad.getImageData();
     List<int> data = imageData.data;
@@ -114,7 +112,7 @@ class _BlurProgram extends _BitmapFilterProgram {
       }
       """;
 
-   void configure(num pixelX, num pixelY) {
-     _renderingContext.uniform2f(_uniformLocations["uPixel"], pixelX, pixelY);
-   }
+  void configure(num pixelX, num pixelY) {
+    _renderingContext.uniform2f(_uniformLocations["uPixel"], pixelX, pixelY);
+  }
 }

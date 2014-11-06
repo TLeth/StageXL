@@ -12,12 +12,12 @@ class GraphicsGradient {
   List _colorStops;
 
   GraphicsGradient.linear(num startX, num startY, num endX, num endY) {
-     _kind = "linear";
-     _startX = startX;
-     _startY = startY;
-     _endX = endX;
-     _endY = endY;
-     _colorStops = new List();
+    _kind = "linear";
+    _startX = startX;
+    _startY = startY;
+    _endX = endX;
+    _endY = endY;
+    _colorStops = new List();
   }
 
   GraphicsGradient.radial(num startX, num startY, num startRadius, num endX, num endY, num endRadius) {
@@ -35,7 +35,10 @@ class GraphicsGradient {
   //-------------------------------------------------------------------------------------------------
 
   void addColorStop(num offset, int color) {
-    _colorStops.add({"offset" : offset, "color" : color2rgba(color)});
+    _colorStops.add({
+      "offset": offset,
+      "color": color2rgba(color)
+    });
   }
 
   //-------------------------------------------------------------------------------------------------
@@ -48,14 +51,11 @@ class GraphicsGradient {
 
     CanvasGradient canvasGradient;
 
-    if (_kind == "linear")
-      canvasGradient = context.createLinearGradient(_startX, _startY, _endX, _endY);
+    if (_kind == "linear") canvasGradient = context.createLinearGradient(_startX, _startY, _endX, _endY);
 
-    if (_kind == "radial")
-      canvasGradient = context.createRadialGradient(_startX, _startY, _startRadius, _endX, _endY, _endRadius);
+    if (_kind == "radial") canvasGradient = context.createRadialGradient(_startX, _startY, _startRadius, _endX, _endY, _endRadius);
 
-    for(var colorStop in _colorStops)
-      canvasGradient.addColorStop(colorStop["offset"], colorStop["color"]);
+    for (var colorStop in _colorStops) canvasGradient.addColorStop(colorStop["offset"], colorStop["color"]);
 
     return canvasGradient;
   }

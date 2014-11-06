@@ -26,16 +26,12 @@ class RenderContextWebGL extends RenderContext {
   int _viewportWidth = 0;
   int _viewportHeight = 0;
 
-  RenderContextWebGL(CanvasElement canvasElement, {
-    bool alpha: false, bool antialias: false }) : _canvasElement = canvasElement {
+  RenderContextWebGL(CanvasElement canvasElement, {bool alpha: false, bool antialias: false}) : _canvasElement = canvasElement {
 
     _canvasElement.onWebGlContextLost.listen(_onContextLost);
     _canvasElement.onWebGlContextRestored.listen(_onContextRestored);
 
-    var renderingContext = _canvasElement.getContext3d(
-        alpha: alpha, antialias: antialias,
-        depth: false, stencil: true,
-        premultipliedAlpha: true, preserveDrawingBuffer: false);
+    var renderingContext = _canvasElement.getContext3d(alpha: alpha, antialias: antialias, depth: false, stencil: true, premultipliedAlpha: true, preserveDrawingBuffer: false);
 
     if (renderingContext is! gl.RenderingContext) {
       throw new StateError("Failed to get WebGL context.");
@@ -84,7 +80,7 @@ class RenderContextWebGL extends RenderContext {
     _renderingContext.viewport(0, 0, _viewportWidth, _viewportHeight);
 
     _projectionMatrix.setIdentity();
-    _projectionMatrix.scale(2.0 / _viewportWidth, - 2.0 / _viewportHeight, 1.0);
+    _projectionMatrix.scale(2.0 / _viewportWidth, -2.0 / _viewportHeight, 1.0);
     _projectionMatrix.translate(-1.0, 1.0, 0.0);
 
     _activeRenderProgram.projectionMatrix = _projectionMatrix;
@@ -120,8 +116,7 @@ class RenderContextWebGL extends RenderContext {
 
   //-----------------------------------------------------------------------------------------------
 
-  void renderTriangle(RenderState renderState,
-                      num x1, num y1, num x2, num y2, num x3, num y3, int color) {
+  void renderTriangle(RenderState renderState, num x1, num y1, num x2, num y2, num x3, num y3, int color) {
 
     activateRenderProgram(renderProgramTriangle);
     activateBlendMode(renderState.globalBlendMode);
@@ -186,7 +181,9 @@ class RenderContextWebGL extends RenderContext {
       _activeRenderProgram.flush();
       _activeRenderFrameBuffer = renderFrameBuffer;
 
-      int width, height, stencilDepth;
+      int width;
+      int stencilDepth;
+      int height;
       gl.Framebuffer framebuffer;
 
       if (renderFrameBuffer != null) {
@@ -255,9 +252,7 @@ class RenderContextWebGL extends RenderContext {
   //-----------------------------------------------------------------------------------------------
 
   int _getStencilDepth() {
-    return _activeRenderFrameBuffer != null
-        ? _activeRenderFrameBuffer._stencilDepth
-        : _stencilDepth;
+    return _activeRenderFrameBuffer != null ? _activeRenderFrameBuffer._stencilDepth : _stencilDepth;
   }
 
   _updateStencilDepth(int stencilDepth) {

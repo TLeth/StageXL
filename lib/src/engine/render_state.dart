@@ -15,10 +15,10 @@ class _ContextState {
 }
 
 /// The [RenderState] class is used to render objects to a give render surface
-/// defined by the renderContext parameter. 
-/// 
-/// Most users won't ever use this class directly because it's only used 
-/// internaly to render the display list. However, more advanced users may use 
+/// defined by the renderContext parameter.
+///
+/// Most users won't ever use this class directly because it's only used
+/// internaly to render the display list. However, more advanced users may use
 /// it to create custom display objects.
 ///
 /// The [renderObject] method keeps track of the state for hierarchical objects
@@ -35,9 +35,9 @@ class RenderState {
 
   _ContextState _currentContextState;
 
-  RenderState(RenderContext renderContext, [Matrix matrix, num alpha, BlendMode blendMode]) :
-    _renderContext = renderContext,
-    _firstContextState = new _ContextState() {
+  RenderState(RenderContext renderContext, [Matrix matrix, num alpha, BlendMode blendMode])
+      : _renderContext = renderContext,
+        _firstContextState = new _ContextState() {
 
     _currentContextState = _firstContextState;
 
@@ -162,8 +162,7 @@ class RenderState {
 
       var flattenRenderFrameBuffer = context.requestRenderFrameBuffer(boundsWidth, boundsHeight);
       var flattenRenderTexture = flattenRenderFrameBuffer.renderTexture;
-      var flattenRenderTextureQuad = new RenderTextureQuad(
-          flattenRenderTexture, 0, boundsLeft, boundsTop, 0, 0, boundsWidth, boundsHeight);
+      var flattenRenderTextureQuad = new RenderTextureQuad(flattenRenderTexture, 0, boundsLeft, boundsTop, 0, 0, boundsWidth, boundsHeight);
       var flattenRenderState = new RenderState(context, flattenRenderTextureQuad.bufferMatrix);
       var flattenProjectionMatrix = new Matrix3D.fromIdentity();
 
@@ -202,9 +201,7 @@ class RenderState {
 
           if (renderFrameBufferMap.containsKey(renderPassSource)) {
             sourceRenderFrameBuffer = renderFrameBufferMap[renderPassSource];
-            sourceRenderTextureQuad = new RenderTextureQuad(
-                sourceRenderFrameBuffer.renderTexture, 0,
-                boundsLeft, boundsTop, 0, 0, boundsWidth, boundsHeight);
+            sourceRenderTextureQuad = new RenderTextureQuad(sourceRenderFrameBuffer.renderTexture, 0, boundsLeft, boundsTop, 0, 0, boundsWidth, boundsHeight);
           } else {
             throw new StateError("Invalid renderPassSource!");
           }

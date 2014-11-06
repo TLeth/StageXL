@@ -32,7 +32,7 @@ class TextField extends InteractiveObject {
   num _textHeight = 0.0;
   final List<TextLineMetrics> _textLineMetrics = new List<TextLineMetrics>();
 
-  int _refreshPending = 3;   // bit 0: textLineMetrics, bit 1: cache
+  int _refreshPending = 3; // bit 0: textLineMetrics, bit 1: cache
   bool _cacheAsBitmap = true;
 
   RenderTexture _renderTexture;
@@ -311,7 +311,7 @@ class TextField extends InteractiveObject {
     canvasContext.textBaseline = "alphabetic";
     canvasContext.setTransform(1.0, 0.0, 0.0, 1.0, 0.0, 0.0);
 
-    for(int p = 0; p < paragraphs.length; p++) {
+    for (int p = 0; p < paragraphs.length; p++) {
 
       var paragraph = paragraphs[p];
       if (paragraph is! String) continue; // dart2js_hint
@@ -331,7 +331,7 @@ class TextField extends InteractiveObject {
 
         var words = paragraph.split(' ');
 
-        for(int w = 0; w < words.length; w++) {
+        for (int w = 0; w < words.length; w++) {
 
           var word = words[w];
           if (word is! String) continue; // dart2js_hint
@@ -369,15 +369,14 @@ class TextField extends InteractiveObject {
     _textWidth = 0.0;
     _textHeight = 0.0;
 
-    for(int line = 0; line < _textLineMetrics.length; line++) {
+    for (int line = 0; line < _textLineMetrics.length; line++) {
 
       var textLineMetrics = _textLineMetrics[line];
       if (textLineMetrics is! TextLineMetrics) continue; // dart2js_hint
 
       var indent = paragraphLines.contains(line) ? textFormatIndent : 0;
       var offsetX = textFormatLeftMargin + indent;
-      var offsetY = textFormatTopMargin + textFormatSize +
-                    line * (textFormatLeading + textFormatSize + fontStyleMetricsDescent);
+      var offsetY = textFormatTopMargin + textFormatSize + line * (textFormatLeading + textFormatSize + fontStyleMetricsDescent);
 
       var width = canvasContext.measureText(textLineMetrics._text).width.toDouble();
 
@@ -405,7 +404,7 @@ class TextField extends InteractiveObject {
 
     if (_width != autoWidth || _height != autoHeight) {
 
-      switch(_autoSize) {
+      switch (_autoSize) {
         case TextFieldAutoSize.LEFT:
           _width = autoWidth;
           _height = autoHeight;
@@ -428,12 +427,12 @@ class TextField extends InteractiveObject {
     //-----------------------------------
     // calculate TextFormat align
 
-    for(int line = 0; line < _textLineMetrics.length; line++) {
+    for (int line = 0; line < _textLineMetrics.length; line++) {
 
       var textLineMetrics = _textLineMetrics[line];
       if (textLineMetrics is! TextLineMetrics) continue; // dart2js_hint
 
-      switch(textFormatAlign) {
+      switch (textFormatAlign) {
         case TextFormatAlign.CENTER:
         case TextFormatAlign.JUSTIFY:
           textLineMetrics._x += (availableWidth - textLineMetrics.width) / 2;
@@ -454,7 +453,7 @@ class TextField extends InteractiveObject {
 
     if (_type == TextFieldType.INPUT) {
 
-      for(int line = _textLineMetrics.length - 1; line >= 0; line--) {
+      for (int line = _textLineMetrics.length - 1; line >= 0; line--) {
 
         var textLineMetrics = _textLineMetrics[line];
         if (textLineMetrics is! TextLineMetrics) continue; // dart2js_hint
@@ -482,7 +481,7 @@ class TextField extends InteractiveObject {
       _caretX += shiftX;
       _caretY += shiftY;
 
-      for(int line = 0; line < _textLineMetrics.length; line++) {
+      for (int line = 0; line < _textLineMetrics.length; line++) {
         var textLineMetrics = _textLineMetrics[line];
         if (textLineMetrics is! TextLineMetrics) continue; // dart2js_hint
 
@@ -504,7 +503,7 @@ class TextField extends InteractiveObject {
 
     var pixelRatio = Stage.autoHiDpi ? env.devicePixelRatio : 1.0;
     var width = max(1, _width).ceil();
-    var height =  max(1, _height).ceil();
+    var height = max(1, _height).ceil();
 
     if (_renderTexture == null) {
       _renderTexture = new RenderTexture(width, height, true, Color.Transparent, pixelRatio);
@@ -544,10 +543,10 @@ class TextField extends InteractiveObject {
       context.fillRect(0, 0, _width, _height);
     }
 
-    if(textFormat.strokeWidth > 0) {
+    if (textFormat.strokeWidth > 0) {
       context.lineWidth = textFormat.strokeWidth * 2;
       context.strokeStyle = color2rgb(textFormat.strokeColor);
-      for(int i = 0; i < _textLineMetrics.length; i++) {
+      for (int i = 0; i < _textLineMetrics.length; i++) {
         var lm = _textLineMetrics[i];
         context.strokeText(lm._text, lm.x, lm.y);
       }
@@ -555,14 +554,12 @@ class TextField extends InteractiveObject {
 
     context.lineWidth = lineWidth;
     context.strokeStyle = color2rgb(textFormat.color);
-    context.fillStyle = textFormat.fillGradient != null
-        ? textFormat.fillGradient.getCanvasGradient(context)
-        : color2rgb(textFormat.color);
+    context.fillStyle = textFormat.fillGradient != null ? textFormat.fillGradient.getCanvasGradient(context) : color2rgb(textFormat.color);
 
-    for(int i = 0; i < _textLineMetrics.length; i++) {
+    for (int i = 0; i < _textLineMetrics.length; i++) {
       var lm = _textLineMetrics[i];
       context.fillText(lm._text, lm.x, lm.y);
-      if(textFormat.underline) {
+      if (textFormat.underline) {
         num underlineY = (lm.y + lineWidth).round();
         if (lineWidth % 2 != 0) underlineY += 0.5;
         context.beginPath();
@@ -589,7 +586,7 @@ class TextField extends InteractiveObject {
     if (_displayAsPassword == false) return text;
 
     var newText = "";
-    for(int i = 0; i < text.length; i++) {
+    for (int i = 0; i < text.length; i++) {
       newText = "$newText$_passwordChar";
     }
     return newText;
@@ -611,7 +608,7 @@ class TextField extends InteractiveObject {
       var caretLine = _caretLine;
       var caretIndexNew = -1;
 
-      switch(keyboardEvent.keyCode) {
+      switch (keyboardEvent.keyCode) {
 
         case html.KeyCode.BACKSPACE:
           if (caretIndex > 0) {
@@ -638,7 +635,7 @@ class TextField extends InteractiveObject {
 
         case html.KeyCode.UP:
           if (caretLine > 0 && caretLine < textLineMetrics.length) {
-            var tlmFrom = textLineMetrics[caretLine ];
+            var tlmFrom = textLineMetrics[caretLine];
             var tlmTo = textLineMetrics[caretLine - 1];
             var lineIndex = min(caretIndex - tlmFrom._textIndex, tlmTo._text.length);
             caretIndexNew = tlmTo._textIndex + lineIndex;
@@ -655,7 +652,7 @@ class TextField extends InteractiveObject {
 
         case html.KeyCode.DOWN:
           if (caretLine >= 0 && caretLine < textLineMetrics.length - 1) {
-            var tlmFrom = textLineMetrics[caretLine ];
+            var tlmFrom = textLineMetrics[caretLine];
             var tlmTo = textLineMetrics[caretLine + 1];
             var lineIndex = min(caretIndex - tlmFrom._textIndex, tlmTo._text.length);
             caretIndexNew = tlmTo._textIndex + lineIndex;
@@ -712,10 +709,10 @@ class TextField extends InteractiveObject {
 
     canvasContext.setTransform(1.0, 0.0, 0.0, 1.0, 0.0, 0.0);
 
-    for(int line = 0; line < _textLineMetrics.length; line++) {
+    for (int line = 0; line < _textLineMetrics.length; line++) {
 
       var textLineMetrics = _textLineMetrics[line];
-      if (textLineMetrics is! TextLineMetrics) continue;  // dart2js_hint
+      if (textLineMetrics is! TextLineMetrics) continue; // dart2js_hint
 
       var text = textLineMetrics._text;
       var lineX = textLineMetrics.x;
@@ -726,7 +723,7 @@ class TextField extends InteractiveObject {
         var bestDistance = double.INFINITY;
         var bestIndex = 0;
 
-        for(var c = 0; c <= text.length; c++) {
+        for (var c = 0; c <= text.length; c++) {
           var width = canvasContext.measureText(text.substring(0, c)).width.toDouble();
           var distance = (lineX + width - mouseX).abs();
           if (distance < bestDistance) {

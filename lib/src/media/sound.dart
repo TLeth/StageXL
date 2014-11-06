@@ -8,15 +8,17 @@ abstract class Sound {
 
   static Future<Sound> load(String url, [SoundLoadOptions soundLoadOptions = null]) {
 
-    switch(SoundMixer.engine) {
-      case "WebAudioApi" : return WebAudioApiSound.load(url, soundLoadOptions);
-      case "AudioElement": return AudioElementSound.load(url, soundLoadOptions);
-      default            : return MockSound.load(url, soundLoadOptions);
+    switch (SoundMixer.engine) {
+      case "WebAudioApi":
+        return WebAudioApiSound.load(url, soundLoadOptions);
+      case "AudioElement":
+        return AudioElementSound.load(url, soundLoadOptions);
+      default:
+        return MockSound.load(url, soundLoadOptions);
     }
   }
 
-  static SoundLoadOptions defaultLoadOptions= new SoundLoadOptions(
-      mp3:true, mp4:true, ogg:true, ac3: true, wav:true);
+  static SoundLoadOptions defaultLoadOptions = new SoundLoadOptions(mp3: true, mp4: true, ogg: true, ac3: true, wav: true);
 
   //-------------------------------------------------------------------------------------------------
 
@@ -24,6 +26,5 @@ abstract class Sound {
 
   SoundChannel play([bool loop = false, SoundTransform soundTransform]);
 
-  SoundChannel playSegment(num startTime, num duration, [
-                           bool loop = false, SoundTransform soundTransform]);
+  SoundChannel playSegment(num startTime, num duration, [bool loop = false, SoundTransform soundTransform]);
 }

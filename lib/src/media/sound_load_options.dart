@@ -33,17 +33,7 @@ class SoundLoadOptions {
   ///
   bool ignoreErrors;
 
-  SoundLoadOptions({
-    this.mp3: false,
-    this.mp4: false,
-    this.ogg: false,
-    this.ac3: false,
-    this.wav: false,
-    this.alternativeUrls: null,
-    this.ignoreErrors: true
-  });
+  SoundLoadOptions({this.mp3: false, this.mp4: false, this.ogg: false, this.ac3: false, this.wav: false, this.alternativeUrls: null, this.ignoreErrors: true});
 
-  SoundLoadOptions clone() => new SoundLoadOptions(
-      mp3: this.mp3, mp4: this.mp4, ogg: this.ogg, ac3: this.ac3, wav: this.wav,
-      alternativeUrls: this.alternativeUrls, ignoreErrors: this.ignoreErrors);
+  SoundLoadOptions clone() => new SoundLoadOptions(mp3: this.mp3, mp4: this.mp4, ogg: this.ogg, ac3: this.ac3, wav: this.wav, alternativeUrls: this.alternativeUrls, ignoreErrors: this.ignoreErrors);
 }

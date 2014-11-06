@@ -8,12 +8,10 @@ class WebAudioApiSoundChannel extends SoundChannel {
   WebAudioApiSound _webAudioApiSound;
   WebAudioApiMixer _webAudioApiMixer;
 
-  WebAudioApiSoundChannel(WebAudioApiSound webAudioApiSound,
-      num startTime, num duration, bool loop, SoundTransform soundTransform) :
-
-      _webAudioApiSound = webAudioApiSound,
-      _loop = loop,
-      _soundTransform = (soundTransform != null) ? soundTransform : new SoundTransform() {
+  WebAudioApiSoundChannel(WebAudioApiSound webAudioApiSound, num startTime, num duration, bool loop, SoundTransform soundTransform)
+      : _webAudioApiSound = webAudioApiSound,
+        _loop = loop,
+        _soundTransform = (soundTransform != null) ? soundTransform : new SoundTransform() {
 
     _webAudioApiMixer = new WebAudioApiMixer(SoundMixer._webAudioApiMixer.inputNode);
     _webAudioApiMixer.applySoundTransform(_soundTransform);

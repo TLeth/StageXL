@@ -125,7 +125,7 @@ abstract class DisplayObjectContainer3D extends DisplayObjectContainer {
     num x3 = (m10 + m30) / (m13 + m33);
     num y3 = (m11 + m31) / (m13 + m33);
 
-    return x1 * (y3 - y2) + x2 * (y1  - y3) + x3 * (y2 - y1) <= 0;
+    return x1 * (y3 - y2) + x2 * (y1 - y3) + x3 * (y2 - y1) <= 0;
   }
 
   //---------------------------------------------------------------------------

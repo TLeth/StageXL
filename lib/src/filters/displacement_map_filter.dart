@@ -7,15 +7,11 @@ class DisplacementMapFilter extends BitmapFilter {
   final num scaleX;
   final num scaleY;
 
-  DisplacementMapFilter(BitmapData bitmapData, [
-                        Matrix matrix = null,
-                        num scaleX = 16.0,
-                        num scaleY = 16.0]) :
-
-    bitmapData = bitmapData,
-    matrix = (matrix != null) ? matrix : new Matrix.fromIdentity(),
-    scaleX = scaleX,
-    scaleY = scaleY;
+  DisplacementMapFilter(BitmapData bitmapData, [Matrix matrix = null, num scaleX = 16.0, num scaleY = 16.0])
+      : bitmapData = bitmapData,
+        matrix = (matrix != null) ? matrix : new Matrix.fromIdentity(),
+        scaleX = scaleX,
+        scaleY = scaleY;
 
   //-----------------------------------------------------------------------------------------------
 
@@ -31,9 +27,7 @@ class DisplacementMapFilter extends BitmapFilter {
 
   void apply(BitmapData bitmapData, [Rectangle<int> rectangle]) {
 
-    RenderTextureQuad renderTextureQuad = rectangle == null
-        ? bitmapData.renderTextureQuad
-        : bitmapData.renderTextureQuad.cut(rectangle);
+    RenderTextureQuad renderTextureQuad = rectangle == null ? bitmapData.renderTextureQuad : bitmapData.renderTextureQuad.cut(rectangle);
 
     ImageData mapImageData = this.bitmapData.renderTextureQuad.getImageData();
     ImageData srcImageData = renderTextureQuad.getImageData();
@@ -62,10 +56,10 @@ class DisplacementMapFilter extends BitmapFilter {
     Matrix matrix = this.matrix.cloneInvert();
     matrix.prependTranslation(renderTextureQuad.offsetX, renderTextureQuad.offsetY);
 
-    for(int dstY = 0; dstY < dstHeight; dstY++) {
+    for (int dstY = 0; dstY < dstHeight; dstY++) {
       num mx = dstY * matrix.c + matrix.tx;
       num my = dstY * matrix.d + matrix.ty;
-      for(int dstX = 0; dstX < dstWidth; dstX++, mx += matrix.a, my += matrix.b) {
+      for (int dstX = 0; dstX < dstWidth; dstX++, mx += matrix.a, my += matrix.b) {
         int mapX = mx.round();
         int mapY = my.round();
         if (mapX < 0) mapX = 0;
@@ -139,10 +133,7 @@ class _DisplacementMapProgram extends _BitmapFilterProgram {
     matrix.copyFromAndConcat(displacementMapFilter.matrix, renderTextureQuad.samplerMatrix);
     matrix.invertAndConcat(displacementMapFilter.bitmapData.renderTextureQuad.samplerMatrix);
 
-    var uMapMatrix = new Float32List.fromList([
-        matrix.a, matrix.c, matrix.tx,
-        matrix.b, matrix.d, matrix.ty,
-        0.0, 0.0, 1.0]);
+    var uMapMatrix = new Float32List.fromList([matrix.a, matrix.c, matrix.tx, matrix.b, matrix.d, matrix.ty, 0.0, 0.0, 1.0]);
 
     var uMapScaleX = displacementMapFilter.scaleX / renderTextureQuad.textureWidth;
     var uMapScaleY = displacementMapFilter.scaleY / renderTextureQuad.textureHeight;

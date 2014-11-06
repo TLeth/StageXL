@@ -10,9 +10,15 @@ class Vector {
   final num _x;
   final num _y;
 
-  Vector(num x, num y) : _x = x.toDouble(), _y = y.toDouble();
-  Vector.zero() : _x = 0.0, _y = 0.0;
-  Vector.polar(num len, num angle) : _x = (len * cos(angle)).toDouble(), _y = (len * sin(angle)).toDouble();
+  Vector(num x, num y)
+      : _x = x.toDouble(),
+        _y = y.toDouble();
+  Vector.zero()
+      : _x = 0.0,
+        _y = 0.0;
+  Vector.polar(num len, num angle)
+      : _x = (len * cos(angle)).toDouble(),
+        _y = (len * sin(angle)).toDouble();
 
   Vector clone() => new Vector(_x, _y);
 
@@ -158,8 +164,7 @@ class Vector {
     num theta = acos(cosTheta);
     num sinTheta = sin(theta);
 
-    if (sinTheta <= Epsilon)
-      return vec.clone();
+    if (sinTheta <= Epsilon) return vec.clone();
 
     num w1 = sin((1 - t) * theta) / sinTheta;
     num w2 = sin(t * theta) / sinTheta;

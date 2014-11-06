@@ -30,7 +30,7 @@ part of stagexl.toolkit;
 // ToDo: possibly add a END actionsMode (only runs actions that == position)?
 // ToDo: evaluate a way to decouple paused from tick registration.
 
-/// **Note:** This class is not intended to be used directly. It is needed by 
+/// **Note:** This class is not intended to be used directly. It is needed by
 /// the 'Toolkit for Dart' to export from Flash Professional to Dart/StageXL.
 ///
 /// A TimelineTween instance tweens properties for a single target.
@@ -491,8 +491,15 @@ class TimelineTween {
    * @protected
    **/
   void _updateTargetProps(TimelineStep step, num ratio) {
-    var p0, p1, v, v0, v1, arr;
-    num dv, dv0, dv1;
+    var p0;
+    var arr;
+    var v1;
+    var v0;
+    var v;
+    var p1;
+    num dv;
+    num dv1;
+    num dv0;
     if (step == null && ratio == 1) {
       p0 = p1 = _curQueueProps;
     } else {
@@ -612,11 +619,11 @@ class TimelineTween {
    * @protected
    **/
   Map<String, dynamic> _appendQueueProps(Map<String, dynamic> o) {
-    var arr,
-        oldValue = null,
-        i,
-        l,
-        injectProps;
+    var arr;
+    var injectProps;
+    var l;
+    var i;
+    var oldValue = null;
     for (var n in o.keys) {
       if (!_initQueueProps.containsKey(n)) {
 

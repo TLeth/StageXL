@@ -32,9 +32,7 @@ class SoundSprite {
       var soundUrls = urls.map((u) => replaceFilename(url, u)).toList();
       var soundUrl = soundUrls[0];
 
-      soundLoadOptions = (soundLoadOptions == null)
-          ? Sound.defaultLoadOptions.clone()
-          : soundLoadOptions.clone();
+      soundLoadOptions = (soundLoadOptions == null) ? Sound.defaultLoadOptions.clone() : soundLoadOptions.clone();
 
       soundLoadOptions.alternativeUrls = soundUrls.skip(1).toList();
 

@@ -43,7 +43,9 @@ abstract class DisplayObjectContainer extends InteractiveObject {
 
   bool get mouseChildren => _mouseChildren;
 
-  void set mouseChildren(bool value) { _mouseChildren = value; }
+  void set mouseChildren(bool value) {
+    _mouseChildren = value;
+  }
 
   /// Determines whether the children of this container are tab enabled.
   ///
@@ -51,7 +53,9 @@ abstract class DisplayObjectContainer extends InteractiveObject {
 
   bool get tabChildren => _tabChildren;
 
-  void set tabChildren(bool value) { _tabChildren = value; }
+  void set tabChildren(bool value) {
+    _tabChildren = value;
+  }
 
   //----------------------------------------------------------------------------
   //----------------------------------------------------------------------------
@@ -101,8 +105,7 @@ abstract class DisplayObjectContainer extends InteractiveObject {
 
       for (var ancestor = this; ancestor != null; ancestor = ancestor.parent) {
         if (ancestor == child) {
-          throw new ArgumentError("An object cannot be added as "
-              "a child to one of it's children (or children's children, etc.).");
+          throw new ArgumentError("An object cannot be added as " "a child to one of it's children (or children's children, etc.).");
         }
       }
 
@@ -320,8 +323,7 @@ abstract class DisplayObjectContainer extends InteractiveObject {
   /// The [point] parameter is in the local coordinate system of
   /// this display object container.
 
-  List<DisplayObject> getObjectsUnderPoint(Point<num> point, [
-    List<DisplayObject> returnList]) {
+  List<DisplayObject> getObjectsUnderPoint(Point<num> point, [List<DisplayObject> returnList]) {
 
     var tmpPoint = new Point<num>(0.0, 0.0);
 

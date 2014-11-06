@@ -27,7 +27,7 @@ part of stagexl.toolkit;
 * OTHER DEALINGS IN THE SOFTWARE.
 */
 
-/// **Note:** This class is not intended to be used directly. It is needed by 
+/// **Note:** This class is not intended to be used directly. It is needed by
 /// the 'Toolkit for Dart' to export from Flash Professional to Dart/StageXL.
 class MovieClip extends Sprite {
   /**
@@ -301,73 +301,76 @@ class MovieClip extends Sprite {
 
   void _setState(List<dynamic> state, int offset) {
     if (state == null) return;
-    for (var i = 0,
-        l = state.length; i < l; i++) {
-      var o = state[i];
-      var target = o["t"];
-      if (target is DisplayObject) {
-        var d = target as DisplayObject;
-        if (o.containsKey("p")) {
-          var p = o["p"];
-          for (var n in p.keys) {
-            var v = p[n];
-            num dv = v is num ? v.toDouble() : 0;
-            switch (n) {
-              case "off":
-                d.off = v as bool;
-                break;
-              case "x":
-                d.x = dv;
-                break;
-              case "y":
-                d.y = dv;
-                break;
-              case "rotation":
-                d.rotation = dv;
-                break;
-              case "alpha":
-                d.alpha = dv;
-                break;
-              case "scaleX":
-                d.scaleX = dv;
-                break;
-              case "scaleY":
-                d.scaleY = dv;
-                break;
-              case "skewX":
-                d.skewX = dv;
-                break;
-              case "skewY":
-                d.skewY = dv;
-                break;
-              case "regX":
-                d.pivotX = dv;
-                break;
-              case "regY":
-                d.pivotY = dv;
-                break;
-              case "startPosition":
-                if (target is MovieClip) (target as MovieClip).startPosition = dv.toInt();
-                break;
-              case "mode":
-                if (target is MovieClip) (target as MovieClip).mode = v.toString();
-                break;
-              case "loop":
-                if (target is MovieClip) (target as MovieClip).loop = v as bool;
-                break;
-              case "graphics":
-                if (target is Shape) (target as Shape).graphics = v as Graphics;
-                break;
-              case "textColor":
-                if (target is TextField) {
-                  var field = target as TextField;
-                  if (v is String) field.textColor = int.parse(v.toString()); else if (v != null) field.textColor = dv.toInt();
-                }
-                break;
+    {
+      var i = 0;
+      var l = state.length;
+      for ( ; i < l; i++) {
+        var o = state[i];
+        var target = o["t"];
+        if (target is DisplayObject) {
+          var d = target as DisplayObject;
+          if (o.containsKey("p")) {
+            var p = o["p"];
+            for (var n in p.keys) {
+              var v = p[n];
+              num dv = v is num ? v.toDouble() : 0;
+              switch (n) {
+                case "off":
+                  d.off = v as bool;
+                  break;
+                case "x":
+                  d.x = dv;
+                  break;
+                case "y":
+                  d.y = dv;
+                  break;
+                case "rotation":
+                  d.rotation = dv;
+                  break;
+                case "alpha":
+                  d.alpha = dv;
+                  break;
+                case "scaleX":
+                  d.scaleX = dv;
+                  break;
+                case "scaleY":
+                  d.scaleY = dv;
+                  break;
+                case "skewX":
+                  d.skewX = dv;
+                  break;
+                case "skewY":
+                  d.skewY = dv;
+                  break;
+                case "regX":
+                  d.pivotX = dv;
+                  break;
+                case "regY":
+                  d.pivotY = dv;
+                  break;
+                case "startPosition":
+                  if (target is MovieClip) (target as MovieClip).startPosition = dv.toInt();
+                  break;
+                case "mode":
+                  if (target is MovieClip) (target as MovieClip).mode = v.toString();
+                  break;
+                case "loop":
+                  if (target is MovieClip) (target as MovieClip).loop = v as bool;
+                  break;
+                case "graphics":
+                  if (target is Shape) (target as Shape).graphics = v as Graphics;
+                  break;
+                case "textColor":
+                  if (target is TextField) {
+                    var field = target as TextField;
+                    if (v is String) field.textColor = int.parse(v.toString()); else if (v != null) field.textColor = dv.toInt();
+                  }
+                  break;
+              }
             }
           }
+          _addManagedChild(d, offset);
         }
-        _addManagedChild(d, offset);
       }
     }
   }

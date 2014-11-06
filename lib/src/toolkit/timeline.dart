@@ -29,7 +29,7 @@ part of stagexl.toolkit;
 
 typedef void ChangeHandler(dynamic sender); // Tween or Timeline
 
-/// **Note:** This class is not intended to be used directly. It is needed by 
+/// **Note:** This class is not intended to be used directly. It is needed by
 /// the 'Toolkit for Dart' to export from Flash Professional to Dart/StageXL.
 class TimelineAction {
   int t;
@@ -42,7 +42,7 @@ class TimelineAction {
   }
 }
 
-/// **Note:** This class is not intended to be used directly. It is needed by 
+/// **Note:** This class is not intended to be used directly. It is needed by
 /// the 'Toolkit for Dart' to export from Flash Professional to Dart/StageXL.
 class TimelineStep {
   num d;
@@ -59,7 +59,7 @@ class TimelineStep {
   }
 }
 
-/// **Note:** This class is not intended to be used directly. It is needed by 
+/// **Note:** This class is not intended to be used directly. It is needed by
 /// the 'Toolkit for Dart' to export from Flash Professional to Dart/StageXL.
 class Timeline {
   /**

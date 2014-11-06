@@ -28,9 +28,7 @@ part of stagexl.display;
 /// This means that you can add a listener to any [DisplayObject] instance to
 /// listen for [BroadcastEvent]s.
 
-abstract class DisplayObject
-    extends EventDispatcher
-    implements RenderObject, TweenObject, BitmapDrawable {
+abstract class DisplayObject extends EventDispatcher implements RenderObject, TweenObject, BitmapDrawable {
 
   static int _nextID = 0;
   final int displayObjectID = _nextID++;
@@ -424,7 +422,7 @@ abstract class DisplayObject
 
   DisplayObject get root {
     DisplayObject obj = this;
-    while(obj.parent != null) obj = obj.parent;
+    while (obj.parent != null) obj = obj.parent;
     return obj;
   }
 
@@ -448,8 +446,7 @@ abstract class DisplayObject
   /// It's recommended that you use the setters of [x], [y], [scaleX], etc.
   /// directly instead of calling this method.
 
-  void setTransform(num x, num y, [num scaleX, num scaleY, num rotation,
-                                   num skewX, num skewY, num pivotX, num pivotY]) {
+  void setTransform(num x, num y, [num scaleX, num scaleY, num rotation, num skewX, num skewY, num pivotX, num pivotY]) {
     if (x is num) _x = x;
     if (y is num) _y = y;
     if (scaleX is num) _scaleX = scaleX;
@@ -513,8 +510,8 @@ abstract class DisplayObject
 
       _transformationMatrixRefresh = false;
 
-      num skewXrotation =  _skewX + _rotation;
-      num skewYrotation =  _skewY + _rotation;
+      num skewXrotation = _skewX + _rotation;
+      num skewYrotation = _skewY + _rotation;
       num scaleX = _scaleX;
       num scaleY = _scaleY;
       num pivotX = _pivotX;
@@ -530,24 +527,27 @@ abstract class DisplayObject
 
       } else {
 
-        num a, b, c, d;
+        num a;
+        num d;
+        num c;
+        num b;
         num cosX = cos(skewXrotation);
         num sinX = sin(skewXrotation);
 
         if (skewXrotation == skewYrotation) {
-          a =   scaleX * cosX;
-          b =   scaleX * sinX;
-          c = - scaleY * sinX;
-          d =   scaleY * cosX;
+          a = scaleX * cosX;
+          b = scaleX * sinX;
+          c = -scaleY * sinX;
+          d = scaleY * cosX;
         } else {
-          a =   scaleX * cos(skewYrotation);
-          b =   scaleX * sin(skewYrotation);
-          c = - scaleY * sinX;
-          d =   scaleY * cosX;
+          a = scaleX * cos(skewYrotation);
+          b = scaleX * sin(skewYrotation);
+          c = -scaleY * sinX;
+          d = scaleY * cosX;
         }
 
-        num tx =  _x - (pivotX * a + pivotY * c);
-        num ty =  _y - (pivotX * b + pivotY * d);
+        num tx = _x - (pivotX * a + pivotY * c);
+        num ty = _y - (pivotX * b + pivotY * d);
 
         _transformationMatrix.setTo(a, b, c, d, tx, ty);
       }
@@ -618,7 +618,7 @@ abstract class DisplayObject
     var ancestor = _getCommonAncestor(targetSpace);
     if (ancestor == null) return null;
 
-    var resultMatrix  = new Matrix.fromIdentity();
+    var resultMatrix = new Matrix.fromIdentity();
     for (var obj = this; obj != ancestor; obj = obj.parent) {
       if (obj is DisplayObjectContainer3D) {
         throw new StateError("Can't calculate 2D matrix for 3D display object.");
@@ -628,7 +628,7 @@ abstract class DisplayObject
 
     if (identical(targetSpace, ancestor)) return resultMatrix;
 
-    var targetMatrix  = new Matrix.fromIdentity();
+    var targetMatrix = new Matrix.fromIdentity();
     for (var obj = targetSpace; obj != ancestor; obj = obj.parent) {
       if (obj is DisplayObjectContainer3D) {
         throw new StateError("Can't calculate 2D matrix for 3D display object.");
@@ -656,7 +656,7 @@ abstract class DisplayObject
     var ancestor = _getCommonAncestor(targetSpace);
     if (ancestor == null) return null;
 
-    var resultMatrix  = new Matrix3D.fromIdentity();
+    var resultMatrix = new Matrix3D.fromIdentity();
     for (var obj = this; obj != ancestor; obj = obj.parent) {
       if (obj is DisplayObjectContainer3D) {
         resultMatrix.concat(obj.projectionMatrix3D);
@@ -666,7 +666,7 @@ abstract class DisplayObject
 
     if (identical(targetSpace, ancestor)) return resultMatrix;
 
-    var targetMatrix  = new Matrix3D.fromIdentity();
+    var targetMatrix = new Matrix3D.fromIdentity();
     for (var obj = targetSpace; obj != ancestor; obj = obj.parent) {
       if (obj is DisplayObjectContainer3D) {
         targetMatrix.concat(obj.projectionMatrix3D);
@@ -758,9 +758,7 @@ abstract class DisplayObject
     var point = new Point<num>(x, y);
     this.globalToLocal(point, point);
 
-    return shapeFlag
-      ? this.hitTestInput(point.x, point.y) != null
-      : this.bounds.contains(point.x, point.y);
+    return shapeFlag ? this.hitTestInput(point.x, point.y) != null : this.bounds.contains(point.x, point.y);
   }
 
   /// Evaluates this display object to see if the coordinates [localX] and
@@ -878,9 +876,7 @@ abstract class DisplayObject
 
     var pixelRatio = Stage.autoHiDpi ? env.devicePixelRatio : 1.0;
 
-    var renderTexture = _cacheTextureQuad == null
-        ? new RenderTexture(width, height, true, Color.Transparent, pixelRatio)
-        : _cacheTextureQuad.renderTexture..resize(width, height);
+    var renderTexture = _cacheTextureQuad == null ? new RenderTexture(width, height, true, Color.Transparent, pixelRatio) : _cacheTextureQuad.renderTexture..resize(width, height);
 
     _cacheTextureQuad = new RenderTextureQuad(renderTexture, 0, x, y, 0, 0, width, height);
     _cacheDebugBorder = debugBorder;
@@ -904,7 +900,7 @@ abstract class DisplayObject
 
     if (_filters != null) {
       var cacheBitmapData = new BitmapData.fromRenderTextureQuad(_cacheTextureQuad);
-      for(int i = 0; i < _filters.length; i++) {
+      for (int i = 0; i < _filters.length; i++) {
         _filters[i].apply(cacheBitmapData);
       }
     }
@@ -940,8 +936,8 @@ abstract class DisplayObject
     List<EventDispatcher> ancestors = null;
 
     if (event.captures || event.bubbles) {
-      for(DisplayObject ancestor = parent; ancestor != null; ancestor = ancestor.parent) {
-        if(ancestor.hasEventListenersFor(event)) {
+      for (DisplayObject ancestor = parent; ancestor != null; ancestor = ancestor.parent) {
+        if (ancestor.hasEventListenersFor(event)) {
           if (ancestors == null) ancestors = [];
           ancestors.add(ancestor);
         }
@@ -949,7 +945,7 @@ abstract class DisplayObject
     }
 
     if (ancestors != null && event.captures) {
-      for(int i = ancestors.length - 1 ; i >= 0; i--) {
+      for (int i = ancestors.length - 1; i >= 0; i--) {
         ancestors[i].dispatchEventRaw(event, this, EventPhase.CAPTURING_PHASE);
         if (event.stopsPropagation) return;
       }
@@ -959,7 +955,7 @@ abstract class DisplayObject
     if (event.stopsPropagation) return;
 
     if (ancestors != null && event.bubbles) {
-      for(int i = 0; i < ancestors.length; i++) {
+      for (int i = 0; i < ancestors.length; i++) {
         ancestors[i].dispatchEventRaw(event, this, EventPhase.BUBBLING_PHASE);
         if (event.stopsPropagation) return;
       }
@@ -980,12 +976,22 @@ abstract class DisplayObject
     var depth1 = 0;
     var depth2 = 0;
 
-    for(var o = obj1; o.parent != null; o = o.parent) { depth1 += 1; }
-    for(var o = obj2; o.parent != null; o = o.parent) { depth2 += 1; }
-    while(depth1 > depth2) { obj1 = obj1.parent; depth1 -= 1; }
-    while(depth2 > depth1) { obj2 = obj2.parent; depth2 -= 1; }
+    for (var o = obj1; o.parent != null; o = o.parent) {
+      depth1 += 1;
+    }
+    for (var o = obj2; o.parent != null; o = o.parent) {
+      depth2 += 1;
+    }
+    while (depth1 > depth2) {
+      obj1 = obj1.parent;
+      depth1 -= 1;
+    }
+    while (depth2 > depth1) {
+      obj2 = obj2.parent;
+      depth2 -= 1;
+    }
 
-    while(identical(obj1, obj2) == false) {
+    while (identical(obj1, obj2) == false) {
       obj1 = obj1.parent;
       obj2 = obj2.parent;
     }

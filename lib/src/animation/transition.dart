@@ -34,12 +34,10 @@ class Transition implements Animatable {
   bool _started = false;
 
   /// Creates a new [Transition].
-  Transition(num startValue, num targetValue, num time,
-      [EaseFunction transitionFunction = TransitionFunction.linear]) :
-
-    _startValue = startValue,
-    _targetValue = targetValue,
-    _transitionFunction = transitionFunction {
+  Transition(num startValue, num targetValue, num time, [EaseFunction transitionFunction = TransitionFunction.linear])
+      : _startValue = startValue,
+        _targetValue = targetValue,
+        _transitionFunction = transitionFunction {
 
     _currentValue = startValue;
     _totalTime = max(0.0001, time);
@@ -82,24 +80,24 @@ class Transition implements Animatable {
 
   /// The starting value to animate from.
   num get startValue => _startValue;
-  
+
   /// The value to animate to.
   num get targetValue => _targetValue;
-  
+
   /// The current value.
-  /// 
+  ///
   /// If [roundToInt] is true, this value will always be an [int].
   num get currentValue => _roundToInt ? _currentValue.round() : _currentValue;
 
   /// The total time of this [Animation].
   num get totalTime => _totalTime;
-  
+
   /// The current time of this [Animation].
   num get currentTime => _currentTime;
 
   /// The delay this [Transiation] waits until it starts animating.
-  /// 
-  /// The delay may be changed as long as the animation has not been started. 
+  ///
+  /// The delay may be changed as long as the animation has not been started.
   num get delay => _delay;
 
   set delay(num value) {
@@ -108,29 +106,35 @@ class Transition implements Animatable {
       _delay = value;
     }
   }
-  
+
   /// Specifies if the values should be rounded to an integer.
-  /// 
+  ///
   /// Default is false.
   bool get roundToInt => _roundToInt;
 
   set roundToInt(bool value) {
     _roundToInt = value;
   }
-  
+
   /// Indicates if this [Transition] is completed.
   bool get isComplete => _currentTime >= _totalTime;
 
   //----------------------------------------------------------------------------
 
-  /// The function that is called when this [Transition] starts. 
-  /// 
+  /// The function that is called when this [Transition] starts.
+  ///
   /// This happens after the specified [delay].
-  void set onStart(void function()) { _onStart = function; }
+  void set onStart(void function()) {
+    _onStart = function;
+  }
 
   /// The function that is called every time this [Transition] updates the value.
-  void set onUpdate(void function(num value)) { _onUpdate = function; }
+  void set onUpdate(void function(num value)) {
+    _onUpdate = function;
+  }
 
   /// The function that is called when this [Transition] is completed.
-  void set onComplete(void function()) { _onComplete = function; }
+  void set onComplete(void function()) {
+    _onComplete = function;
+  }
 }

@@ -56,8 +56,7 @@ final List<EventStreamSubscription> _enterFrameSubscriptions = [];
 final List<EventStreamSubscription> _exitFrameSubscriptions = [];
 final List<EventStreamSubscription> _renderSubscriptions = [];
 
-_dispatchBroadcastEvent(BroadcastEvent broadcastEvent,
-    List<EventStreamSubscription> subscriptions) {
+_dispatchBroadcastEvent(BroadcastEvent broadcastEvent, List<EventStreamSubscription> subscriptions) {
 
   // Dispatch event to current subscriptions.
   // Do not dispatch events to newly added subscriptions.

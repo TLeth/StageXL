@@ -4,8 +4,8 @@ class RenderTextureQuad {
 
   RenderTexture _renderTexture;
 
-  Float32List _uvList = new Float32List(8);   // WebGL coordinates
-  Int32List _xyList = new Int32List(8);       // Canvas coordinates
+  Float32List _uvList = new Float32List(8); // WebGL coordinates
+  Int32List _xyList = new Int32List(8); // Canvas coordinates
 
   int _rotation = 0;
   int _offsetX = 0;
@@ -15,9 +15,7 @@ class RenderTextureQuad {
   int _textureWidth = 0;
   int _textureHeight = 0;
 
-  RenderTextureQuad(RenderTexture renderTexture,
-      int rotation, int offsetX, int offsetY,
-      int textureX, int textureY, int textureWidth, int textureHeight) {
+  RenderTextureQuad(RenderTexture renderTexture, int rotation, int offsetX, int offsetY, int textureX, int textureY, int textureWidth, int textureHeight) {
 
     _renderTexture = renderTexture;
     _rotation = ensureInt(rotation);
@@ -28,10 +26,14 @@ class RenderTextureQuad {
     _textureWidth = ensureInt(textureWidth);
     _textureHeight = ensureInt(textureHeight);
 
-    int x1 = 0, y1 = 0;
-    int x2 = 0, y2 = 0;
-    int x3 = 0, y3 = 0;
-    int x4 = 0, y4 = 0;
+    int x1 = 0;
+    int y1 = 0;
+    int x2 = 0;
+    int y2 = 0;
+    int x3 = 0;
+    int y3 = 0;
+    int x4 = 0;
+    int y4 = 0;
 
     if (_rotation == 0) {
       x1 = x4 = _textureX;
@@ -108,13 +110,13 @@ class RenderTextureQuad {
     num s = _renderTexture.storePixelRatio;
 
     if (rotation == 0) {
-      return new Matrix( s, 0.0, 0.0,  s, s * (textureX - offsetX), s * (textureY - offsetY));
+      return new Matrix(s, 0.0, 0.0, s, s * (textureX - offsetX), s * (textureY - offsetY));
     } else if (rotation == 1) {
-      return new Matrix(0.0,  s, -s, 0.0, s * (textureX + offsetY), s * (textureY - offsetX));
+      return new Matrix(0.0, s, -s, 0.0, s * (textureX + offsetY), s * (textureY - offsetX));
     } else if (rotation == 2) {
       return new Matrix(-s, 0.0, 0.0, -s, s * (textureX + offsetX), s * (textureY + offsetY));
     } else if (rotation == 3) {
-      return new Matrix(0.0, -s,  s, 0.0, s * (textureX - offsetY), s * (textureY + offsetX));
+      return new Matrix(0.0, -s, s, 0.0, s * (textureX - offsetY), s * (textureY + offsetX));
     } else {
       throw new Error();
     }
@@ -135,13 +137,13 @@ class RenderTextureQuad {
     num sy = 2.0 / _renderTexture.height;
 
     if (rotation == 0) {
-      return new Matrix( sx, 0.0, 0.0,  sy, sx * (textureX - offsetX) - 1.0, sy * (textureY - offsetY) - 1.0);
+      return new Matrix(sx, 0.0, 0.0, sy, sx * (textureX - offsetX) - 1.0, sy * (textureY - offsetY) - 1.0);
     } else if (rotation == 1) {
-      return new Matrix(0.0,  sy, -sx, 0.0, sx * (textureX + offsetY) - 1.0, sy * (textureY - offsetX) - 1.0);
+      return new Matrix(0.0, sy, -sx, 0.0, sx * (textureX + offsetY) - 1.0, sy * (textureY - offsetX) - 1.0);
     } else if (rotation == 2) {
       return new Matrix(-sx, 0.0, 0.0, -sy, sx * (textureX + offsetX) - 1.0, sy * (textureY + offsetY) - 1.0);
     } else if (rotation == 3) {
-      return new Matrix(0.0, -sy,  sx, 0.0, sx * (textureX - offsetY) - 1.0, sy * (textureY + offsetX) - 1.0);
+      return new Matrix(0.0, -sy, sx, 0.0, sx * (textureX - offsetY) - 1.0, sy * (textureY + offsetX) - 1.0);
     } else {
       throw new Error();
     }
@@ -162,13 +164,13 @@ class RenderTextureQuad {
     num sy = 1.0 / _renderTexture.height;
 
     if (rotation == 0) {
-      return new Matrix( sx, 0.0, 0.0,  sy, sx * (textureX - offsetX), sy * (textureY - offsetY));
+      return new Matrix(sx, 0.0, 0.0, sy, sx * (textureX - offsetX), sy * (textureY - offsetY));
     } else if (rotation == 1) {
-      return new Matrix(0.0,  sy, -sx, 0.0, sx * (textureX + offsetY), sy * (textureY - offsetX));
+      return new Matrix(0.0, sy, -sx, 0.0, sx * (textureX + offsetY), sy * (textureY - offsetX));
     } else if (rotation == 2) {
       return new Matrix(-sx, 0.0, 0.0, -sy, sx * (textureX + offsetX), sy * (textureY + offsetY));
     } else if (rotation == 3) {
-      return new Matrix(0.0, -sy,  sx, 0.0, sx * (textureX - offsetY), sy * (textureY + offsetX));
+      return new Matrix(0.0, -sy, sx, 0.0, sx * (textureX - offsetY), sy * (textureY + offsetX));
     } else {
       throw new Error();
     }
@@ -206,8 +208,7 @@ class RenderTextureQuad {
     int textureWidth = right - left;
     int textureHeight = bottom - top;
 
-    return new RenderTextureQuad(
-        renderTexture, rotation, left, top, textureX, textureY, textureWidth, textureHeight);
+    return new RenderTextureQuad(renderTexture, rotation, left, top, textureX, textureY, textureWidth, textureHeight);
   }
 
   //-----------------------------------------------------------------------------------------------
@@ -224,7 +225,10 @@ class RenderTextureQuad {
 
   Rectangle<int> get _imageDataRectangle {
     num storePixelRatio = _renderTexture.storePixelRatio;
-    int left = 0, top = 0, right = 1, bottom = 1;
+    int left = 0;
+    int bottom = 1;
+    int right = 1;
+    int top = 0;
 
     if (rotation == 0) {
       left = textureX;

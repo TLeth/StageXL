@@ -17,9 +17,7 @@ import 'dart:async';
 import 'dart:web_gl' as gl;
 import 'dart:typed_data';
 
-import 'dart:html' show window,
-    Element, ImageElement, CanvasElement, CanvasRenderingContext2D,
-    CanvasImageSource, CanvasPattern, CanvasGradient, ImageData;
+import 'dart:html' show window, Element, ImageElement, CanvasElement, CanvasRenderingContext2D, CanvasImageSource, CanvasPattern, CanvasGradient, ImageData;
 
 import 'geom/matrix.dart';
 import 'geom/matrix_3d.dart';

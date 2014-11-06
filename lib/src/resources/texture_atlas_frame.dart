@@ -18,20 +18,18 @@ class TextureAtlasFrame {
 
   RenderTexture renderTexture = null;
 
-  TextureAtlasFrame(this.textureAtlas, this.name, this.rotation,
-      this.originalWidth, this.originalHeight, this.offsetX, this.offsetY,
-      this.frameX, this.frameY, this.frameWidth, this.frameHeight);
+  TextureAtlasFrame(this.textureAtlas, this.name, this.rotation, this.originalWidth, this.originalHeight, this.offsetX, this.offsetY, this.frameX, this.frameY, this.frameWidth, this.frameHeight);
 
-  TextureAtlasFrame._fromJson(this.textureAtlas, this.name, Map frame) :
-    rotation = ensureBool(frame["rotated"]) ? 1 : 0,
-    originalWidth = ensureInt(frame["sourceSize"]["w"]),
-    originalHeight = ensureInt(frame["sourceSize"]["h"]),
-    offsetX = ensureInt(frame["spriteSourceSize"]["x"]),
-    offsetY = ensureInt(frame["spriteSourceSize"]["y"]),
-    frameX = ensureInt(frame["frame"]["x"]),
-    frameY = ensureInt(frame["frame"]["y"]),
-    frameWidth = ensureInt(frame["frame"]["w"]),
-    frameHeight = ensureInt(frame["frame"]["h"]);
+  TextureAtlasFrame._fromJson(this.textureAtlas, this.name, Map frame)
+      : rotation = ensureBool(frame["rotated"]) ? 1 : 0,
+        originalWidth = ensureInt(frame["sourceSize"]["w"]),
+        originalHeight = ensureInt(frame["sourceSize"]["h"]),
+        offsetX = ensureInt(frame["spriteSourceSize"]["x"]),
+        offsetY = ensureInt(frame["spriteSourceSize"]["y"]),
+        frameX = ensureInt(frame["frame"]["x"]),
+        frameY = ensureInt(frame["frame"]["y"]),
+        frameWidth = ensureInt(frame["frame"]["w"]),
+        frameHeight = ensureInt(frame["frame"]["h"]);
 
   //-------------------------------------------------------------------------------------------------
 
@@ -56,8 +54,7 @@ class TextureAtlasFrame {
       textureY = frameY + frameWidth;
     }
 
-    var renderTextureQuad = new RenderTextureQuad(renderTexture,
-        rotation, offsetX, offsetY, textureX, textureY, textureWidth, textureHeight);
+    var renderTextureQuad = new RenderTextureQuad(renderTexture, rotation, offsetX, offsetY, textureX, textureY, textureWidth, textureHeight);
 
     return new BitmapData.fromRenderTextureQuad(renderTextureQuad, originalWidth, originalHeight);
   }

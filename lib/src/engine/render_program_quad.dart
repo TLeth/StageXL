@@ -54,13 +54,17 @@ class RenderProgramQuad extends RenderProgram {
   int _quadCount = 0;
 
   RenderProgramQuad() {
-    for(int i = 0, j = 0; i <= _indexList.length - 6; i += 6, j +=4 ) {
-      _indexList[i + 0] = j + 0;
-      _indexList[i + 1] = j + 1;
-      _indexList[i + 2] = j + 2;
-      _indexList[i + 3] = j + 0;
-      _indexList[i + 4] = j + 2;
-      _indexList[i + 5] = j + 3;
+    {
+      int i = 0;
+      int j = 0;
+      for ( ; i <= _indexList.length - 6; i += 6, j += 4) {
+        _indexList[i + 0] = j + 0;
+        _indexList[i + 1] = j + 1;
+        _indexList[i + 2] = j + 2;
+        _indexList[i + 3] = j + 0;
+        _indexList[i + 4] = j + 2;
+        _indexList[i + 5] = j + 3;
+      }
     }
   }
 

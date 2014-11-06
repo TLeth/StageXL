@@ -105,8 +105,7 @@ class _RectangleMask extends _TransformedMask {
 
   final Rectangle<num> _rectangle;
 
-  _RectangleMask(num x, num y, num width, num height) :
-      _rectangle = new Rectangle<num>(x, y, width, height);
+  _RectangleMask(num x, num y, num width, num height) : _rectangle = new Rectangle<num>(x, y, width, height);
 
   bool hitTestTransformed(num x, num y) {
     return _rectangle.contains(x, y);

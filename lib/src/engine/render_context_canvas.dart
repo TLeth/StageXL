@@ -10,9 +10,9 @@ class RenderContextCanvas extends RenderContext {
   BlendMode _activeBlendMode = BlendMode.NORMAL;
   double _activeAlpha = 1.0;
 
-  RenderContextCanvas(CanvasElement canvasElement) :
-    _canvasElement = canvasElement,
-    _renderingContext = canvasElement.context2D;
+  RenderContextCanvas(CanvasElement canvasElement)
+      : _canvasElement = canvasElement,
+        _renderingContext = canvasElement.context2D;
 
   //-----------------------------------------------------------------------------------------------
 
@@ -75,13 +75,11 @@ class RenderContextCanvas extends RenderContext {
       var sourceHeight = xyList[5] - sourceY;
       var destinationX = renderTextureQuad.offsetX;
       var destinationY = renderTextureQuad.offsetY;
-      var destinationWidth= renderTextureQuad.textureWidth;
+      var destinationWidth = renderTextureQuad.textureWidth;
       var destinationHeight = renderTextureQuad.textureHeight;
 
       context.setTransform(matrix.a, matrix.b, matrix.c, matrix.d, matrix.tx, matrix.ty);
-      context.drawImageScaledFromSource(source,
-          sourceX, sourceY, sourceWidth, sourceHeight,
-          destinationX, destinationY, destinationWidth, destinationHeight);
+      context.drawImageScaledFromSource(source, sourceX, sourceY, sourceWidth, sourceHeight, destinationX, destinationY, destinationWidth, destinationHeight);
 
     } else if (rotation == 1) {
 
@@ -95,9 +93,7 @@ class RenderContextCanvas extends RenderContext {
       var destinationHeight = renderTextureQuad.textureWidth;
 
       context.setTransform(-matrix.c, -matrix.d, matrix.a, matrix.b, matrix.tx, matrix.ty);
-      context.drawImageScaledFromSource(source,
-          sourceX, sourceY, sourceWidth, sourceHeight,
-          destinationX, destinationY, destinationWidth, destinationHeight);
+      context.drawImageScaledFromSource(source, sourceX, sourceY, sourceWidth, sourceHeight, destinationX, destinationY, destinationWidth, destinationHeight);
 
     } else if (rotation == 2) {
 
@@ -106,14 +102,12 @@ class RenderContextCanvas extends RenderContext {
       var sourceWidth = xyList[0] - sourceX;
       var sourceHeight = xyList[1] - sourceY;
       var destinationX = 0.0 - renderTextureQuad.offsetX - renderTextureQuad.textureWidth;
-      var destinationY = 0.0 - renderTextureQuad.offsetY- renderTextureQuad.textureHeight;
-      var destinationWidth= renderTextureQuad.textureWidth;
+      var destinationY = 0.0 - renderTextureQuad.offsetY - renderTextureQuad.textureHeight;
+      var destinationWidth = renderTextureQuad.textureWidth;
       var destinationHeight = renderTextureQuad.textureHeight;
 
       context.setTransform(-matrix.a, -matrix.b, -matrix.c, -matrix.d, matrix.tx, matrix.ty);
-      context.drawImageScaledFromSource(source,
-          sourceX, sourceY, sourceWidth, sourceHeight,
-          destinationX, destinationY, destinationWidth, destinationHeight);
+      context.drawImageScaledFromSource(source, sourceX, sourceY, sourceWidth, sourceHeight, destinationX, destinationY, destinationWidth, destinationHeight);
 
     } else if (rotation == 3) {
 
@@ -127,9 +121,7 @@ class RenderContextCanvas extends RenderContext {
       var destinationHeight = renderTextureQuad.textureWidth;
 
       context.setTransform(matrix.c, matrix.d, -matrix.a, -matrix.b, matrix.tx, matrix.ty);
-      context.drawImageScaledFromSource(source,
-          sourceX, sourceY, sourceWidth, sourceHeight,
-          destinationX, destinationY, destinationWidth, destinationHeight);
+      context.drawImageScaledFromSource(source, sourceX, sourceY, sourceWidth, sourceHeight, destinationX, destinationY, destinationWidth, destinationHeight);
     }
   }
 

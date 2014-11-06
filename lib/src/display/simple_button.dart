@@ -70,11 +70,19 @@ class SimpleButton extends InteractiveObject {
 
   void _onTouchEvent(TouchEvent touchEvent) {
     if (touchEvent.isPrimaryTouchPoint) {
-      switch(touchEvent.type) {
-        case TouchEvent.TOUCH_OVER: _currentState = downState; break;
-        case TouchEvent.TOUCH_OUT: _currentState = upState; break;
-        case TouchEvent.TOUCH_BEGIN: _currentState = downState; break;
-        case TouchEvent.TOUCH_END: _currentState = upState; break;
+      switch (touchEvent.type) {
+        case TouchEvent.TOUCH_OVER:
+          _currentState = downState;
+          break;
+        case TouchEvent.TOUCH_OUT:
+          _currentState = upState;
+          break;
+        case TouchEvent.TOUCH_BEGIN:
+          _currentState = downState;
+          break;
+        case TouchEvent.TOUCH_END:
+          _currentState = upState;
+          break;
       }
     }
   }

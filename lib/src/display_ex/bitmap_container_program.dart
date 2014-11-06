@@ -75,13 +75,17 @@ class _BitmapContainerProgram extends RenderProgram {
   int _quadCount = 0;
 
   _BitmapContainerProgram() {
-    for(int i = 0, j = 0; i <= _indexList.length - 6; i += 6, j +=4 ) {
-      _indexList[i + 0] = j + 0;
-      _indexList[i + 1] = j + 1;
-      _indexList[i + 2] = j + 2;
-      _indexList[i + 3] = j + 0;
-      _indexList[i + 4] = j + 2;
-      _indexList[i + 5] = j + 3;
+    {
+      int i = 0;
+      int j = 0;
+      for ( ; i <= _indexList.length - 6; i += 6, j += 4) {
+        _indexList[i + 0] = j + 0;
+        _indexList[i + 1] = j + 1;
+        _indexList[i + 2] = j + 2;
+        _indexList[i + 3] = j + 0;
+        _indexList[i + 4] = j + 2;
+        _indexList[i + 5] = j + 3;
+      }
     }
   }
 
@@ -143,10 +147,7 @@ class _BitmapContainerProgram extends RenderProgram {
 
   void reset(Matrix globalMatrix, num globalAlpha) {
 
-    var uGlobalMatrix = new Float32List.fromList([
-        globalMatrix.a, globalMatrix.c, globalMatrix.tx,
-        globalMatrix.b, globalMatrix.d, globalMatrix.ty,
-        0.0, 0.0, 0.0]);
+    var uGlobalMatrix = new Float32List.fromList([globalMatrix.a, globalMatrix.c, globalMatrix.tx, globalMatrix.b, globalMatrix.d, globalMatrix.ty, 0.0, 0.0, 0.0]);
 
     _renderingContext.uniformMatrix3fv(_uGlobalMatrix, false, uGlobalMatrix);
     _renderingContext.uniform1f(_uGlobalAlpha, globalAlpha);

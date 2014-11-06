@@ -24,8 +24,7 @@ class MockSound extends Sound {
     return new MockSoundChannel(this, 0, this.length, loop, soundTransform);
   }
 
-  SoundChannel playSegment(num startTime, num duration, [
-                           bool loop = false, SoundTransform soundTransform]) {
+  SoundChannel playSegment(num startTime, num duration, [bool loop = false, SoundTransform soundTransform]) {
 
     if (soundTransform == null) soundTransform = new SoundTransform();
     return new MockSoundChannel(this, startTime, duration, loop, soundTransform);

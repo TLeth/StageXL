@@ -46,14 +46,16 @@ class FlipBook extends InteractiveObject implements Animatable {
   int get totalFrames => _bitmapDatas.length;
 
   bool get loop => _loop;
-  void set loop(bool value) { _loop = value; }
+  void set loop(bool value) {
+    _loop = value;
+  }
 
   bool get playing => _play;
 
   List<num> get frameDurations => _frameDurations;
 
   set frameDurations(List<num> value) {
-    for(var i = 0; i < _frameDurations.length; i++) {
+    for (var i = 0; i < _frameDurations.length; i++) {
       _frameDurations[i] = (i < value.length) ? value[i] : value.last;
     }
   }

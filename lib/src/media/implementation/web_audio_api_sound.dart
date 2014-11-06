@@ -41,9 +41,7 @@ class WebAudioApiSound extends Sound {
 
     audioRequestNext(error) {
       if (audioUrls.length > 0) {
-        HttpRequest.request(audioUrls.removeAt(0), responseType: 'arraybuffer')
-        .then(audioRequestFinished)
-        .catchError(audioRequestNext);
+        HttpRequest.request(audioUrls.removeAt(0), responseType: 'arraybuffer').then(audioRequestFinished).catchError(audioRequestNext);
       } else {
         if (soundLoadOptions.ignoreErrors) {
           MockSound.load(url, soundLoadOptions).then((s) => loadCompleter.complete(s));
@@ -70,8 +68,7 @@ class WebAudioApiSound extends Sound {
     return new WebAudioApiSoundChannel(this, 0, this.length, loop, soundTransform);
   }
 
-  SoundChannel playSegment(num startTime, num duration, [
-                           bool loop = false, SoundTransform soundTransform]) {
+  SoundChannel playSegment(num startTime, num duration, [bool loop = false, SoundTransform soundTransform]) {
 
     if (soundTransform == null) soundTransform = new SoundTransform();
     return new WebAudioApiSoundChannel(this, startTime, duration, loop, soundTransform);

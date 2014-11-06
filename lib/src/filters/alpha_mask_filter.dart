@@ -5,11 +5,9 @@ class AlphaMaskFilter extends BitmapFilter {
   final BitmapData bitmapData;
   final Matrix matrix;
 
-  AlphaMaskFilter(BitmapData bitmapData, [
-                  Matrix matrix = null]) :
-
-    bitmapData = bitmapData,
-    matrix = (matrix != null) ? matrix : new Matrix.fromIdentity();
+  AlphaMaskFilter(BitmapData bitmapData, [Matrix matrix = null])
+      : bitmapData = bitmapData,
+        matrix = (matrix != null) ? matrix : new Matrix.fromIdentity();
 
   //-----------------------------------------------------------------------------------------------
 
@@ -19,9 +17,7 @@ class AlphaMaskFilter extends BitmapFilter {
 
   void apply(BitmapData bitmapData, [Rectangle<int> rectangle]) {
 
-    RenderTextureQuad renderTextureQuad = rectangle == null
-        ? bitmapData.renderTextureQuad
-        : bitmapData.renderTextureQuad.cut(rectangle);
+    RenderTextureQuad renderTextureQuad = rectangle == null ? bitmapData.renderTextureQuad : bitmapData.renderTextureQuad.cut(rectangle);
 
     int offsetX = renderTextureQuad.offsetX;
     int offsetY = renderTextureQuad.offsetY;
@@ -90,10 +86,7 @@ class _AlphaMaskProgram extends _BitmapFilterProgram {
     matrix.copyFromAndConcat(alphaMaskFilter.matrix, renderTextureQuad.samplerMatrix);
     matrix.invertAndConcat(alphaMaskFilter.bitmapData.renderTextureQuad.samplerMatrix);
 
-    var uMaskMatrix = new Float32List.fromList([
-        matrix.a, matrix.c, matrix.tx,
-        matrix.b, matrix.d, matrix.ty,
-        0.0, 0.0, 1.0]);
+    var uMaskMatrix = new Float32List.fromList([matrix.a, matrix.c, matrix.tx, matrix.b, matrix.d, matrix.ty, 0.0, 0.0, 1.0]);
 
     _renderingContext.uniformMatrix3fv(_uniformLocations["uMaskMatrix"], false, uMaskMatrix);
     _renderingContext.uniform1i(_uniformLocations["uMaskSampler"], 1);

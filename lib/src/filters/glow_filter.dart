@@ -8,8 +8,7 @@ class GlowFilter extends BitmapFilter {
   bool knockout;
   bool hideObject;
 
-  GlowFilter(this.color, this.blurX, this.blurY, {
-             this.knockout: false, this.hideObject: false}) {
+  GlowFilter(this.color, this.blurX, this.blurY, {this.knockout: false, this.hideObject: false}) {
 
     if (blurX < 0 || blurY < 0) {
       throw new ArgumentError("The minimum blur size is 0.");
@@ -19,9 +18,7 @@ class GlowFilter extends BitmapFilter {
     }
   }
 
-  BitmapFilter clone() => new GlowFilter(
-      color, blurX, blurY,
-      knockout: knockout, hideObject: hideObject);
+  BitmapFilter clone() => new GlowFilter(color, blurX, blurY, knockout: knockout, hideObject: hideObject);
 
   Rectangle<int> get overlap => new Rectangle<int>(-blurX, -blurY, 2 * blurX, 2 * blurY);
 
@@ -33,12 +30,9 @@ class GlowFilter extends BitmapFilter {
 
   void apply(BitmapData bitmapData, [Rectangle<int> rectangle]) {
 
-    RenderTextureQuad renderTextureQuad = rectangle == null
-        ? bitmapData.renderTextureQuad
-        : bitmapData.renderTextureQuad.cut(rectangle);
+    RenderTextureQuad renderTextureQuad = rectangle == null ? bitmapData.renderTextureQuad : bitmapData.renderTextureQuad.cut(rectangle);
 
-    ImageData sourceImageData =
-        this.hideObject == false || this.knockout ? renderTextureQuad.getImageData() : null;
+    ImageData sourceImageData = this.hideObject == false || this.knockout ? renderTextureQuad.getImageData() : null;
 
     ImageData imageData = renderTextureQuad.getImageData();
     List<int> data = imageData.data;
@@ -124,13 +118,13 @@ class _GlowProgram extends _BitmapFilterProgram {
       }
       """;
 
-   void configure(int color, num pixelX, num pixelY) {
-     num r = colorGetR(color) / 255.0;
-     num g = colorGetG(color) / 255.0;
-     num b = colorGetB(color) / 255.0;
-     num a = colorGetA(color) / 255.0;
-     _renderingContext.uniform2f(_uniformLocations["uPixel"], pixelX, pixelY);
-     _renderingContext.uniform4f(_uniformLocations["uColor"], r, g, b, a);
-   }
+  void configure(int color, num pixelX, num pixelY) {
+    num r = colorGetR(color) / 255.0;
+    num g = colorGetG(color) / 255.0;
+    num b = colorGetB(color) / 255.0;
+    num a = colorGetA(color) / 255.0;
+    _renderingContext.uniform2f(_uniformLocations["uPixel"], pixelX, pixelY);
+    _renderingContext.uniform4f(_uniformLocations["uColor"], r, g, b, a);
+  }
 }
 

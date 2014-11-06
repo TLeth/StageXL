@@ -1,15 +1,19 @@
 part of stagexl.animation;
 
 /// The abstract [TweenObject] class defines the interface for a class
-/// that can used with the [Tween] class. 
-/// 
-/// All [DisplayObject]s do implement this interface and therefore they can be 
+/// that can used with the [Tween] class.
+///
+/// All [DisplayObject]s do implement this interface and therefore they can be
 /// used for tween animations.
 abstract class TweenObject {
-  num x, y;
-  num pivotX, pivotY;
-  num scaleX, scaleY;
-  num skewX, skewY;
+  num x;
+  num y;
+  num pivotX;
+  num pivotY;
+  num scaleX;
+  num scaleY;
+  num skewX;
+  num skewY;
   num rotation;
   num alpha;
 }
@@ -48,7 +52,7 @@ class TweenProperty {
   final int _propertyIndex;
   num _startValue = double.NAN;
   num _targetValue = double.NAN;
-  num _deltaValue =  double.NAN;
+  num _deltaValue = double.NAN;
 
   TweenProperty._internal(this._tweenObject, this._propertyIndex);
 
@@ -63,18 +67,39 @@ class TweenProperty {
   }
 
   void _init() {
-    switch(_propertyIndex) {
-      case 0: _startValue = _tweenObject.x; break;
-      case 1: _startValue = _tweenObject.y;  break;
-      case 2: _startValue = _tweenObject.pivotX; break;
-      case 3: _startValue = _tweenObject.pivotY; break;
-      case 4: _startValue = _tweenObject.scaleX; break;
-      case 5: _startValue = _tweenObject.scaleY; break;
-      case 6: _startValue = _tweenObject.skewX; break;
-      case 7: _startValue = _tweenObject.skewY; break;
-      case 8: _startValue = _tweenObject.rotation; break;
-      case 9: _startValue = _tweenObject.alpha; break;
-      default: _startValue = 0.0;
+    switch (_propertyIndex) {
+      case 0:
+        _startValue = _tweenObject.x;
+        break;
+      case 1:
+        _startValue = _tweenObject.y;
+        break;
+      case 2:
+        _startValue = _tweenObject.pivotX;
+        break;
+      case 3:
+        _startValue = _tweenObject.pivotY;
+        break;
+      case 4:
+        _startValue = _tweenObject.scaleX;
+        break;
+      case 5:
+        _startValue = _tweenObject.scaleY;
+        break;
+      case 6:
+        _startValue = _tweenObject.skewX;
+        break;
+      case 7:
+        _startValue = _tweenObject.skewY;
+        break;
+      case 8:
+        _startValue = _tweenObject.rotation;
+        break;
+      case 9:
+        _startValue = _tweenObject.alpha;
+        break;
+      default:
+        _startValue = 0.0;
     }
 
     if (_deltaValue.isNaN && _targetValue.isFinite) {
@@ -90,17 +115,37 @@ class TweenProperty {
       var value = _startValue + transition * (_targetValue - _startValue);
       value = roundToInt ? value.roundToDouble() : value;
 
-      switch(_propertyIndex) {
-        case 0: _tweenObject.x = value; break;
-        case 1: _tweenObject.y = value;  break;
-        case 2: _tweenObject.pivotX = value; break;
-        case 3: _tweenObject.pivotY = value; break;
-        case 4: _tweenObject.scaleX = value; break;
-        case 5: _tweenObject.scaleY = value; break;
-        case 6: _tweenObject.skewX = value; break;
-        case 7: _tweenObject.skewY = value; break;
-        case 8: _tweenObject.rotation = value; break;
-        case 9: _tweenObject.alpha = value; break;
+      switch (_propertyIndex) {
+        case 0:
+          _tweenObject.x = value;
+          break;
+        case 1:
+          _tweenObject.y = value;
+          break;
+        case 2:
+          _tweenObject.pivotX = value;
+          break;
+        case 3:
+          _tweenObject.pivotY = value;
+          break;
+        case 4:
+          _tweenObject.scaleX = value;
+          break;
+        case 5:
+          _tweenObject.scaleY = value;
+          break;
+        case 6:
+          _tweenObject.skewX = value;
+          break;
+        case 7:
+          _tweenObject.skewY = value;
+          break;
+        case 8:
+          _tweenObject.rotation = value;
+          break;
+        case 9:
+          _tweenObject.alpha = value;
+          break;
       }
     }
   }

@@ -112,10 +112,9 @@ class ResourceManager {
   }
 
   void addTextFile(String name, String url) {
-    _addResource("TextFile", name, url,
-        HttpRequest.getString(url).then((text) => text, onError: (error) {
-          throw new StateError("Failed to load text file.");
-        }));
+    _addResource("TextFile", name, url, HttpRequest.getString(url).then((text) => text, onError: (error) {
+      throw new StateError("Failed to load text file.");
+    }));
   }
 
   void addText(String name, String text) {

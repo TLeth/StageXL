@@ -69,8 +69,7 @@ Future<bool> _checkWebpSupport() {
   img.onLoad.listen((e) => completer.complete(img.width == 2 && img.height == 2));
   img.onError.listen((e) => completer.complete(false));
 
-  img.src = 'data:image/webp;base64,UklGRjoAAABXRUJQVlA4IC4AAACyAg'
-      'CdASoCAAIALmk0mk0iIiIiIgBoSygABc6WWgAA/veff/0PP8bA//LwYAAA';
+  img.src = 'data:image/webp;base64,UklGRjoAAABXRUJQVlA4IC4AAACyAg' 'CdASoCAAIALmk0mk0iIiIiIgBoSygABc6WWgAA/veff/0PP8bA//LwYAAA';
 
   return completer.future;
 }

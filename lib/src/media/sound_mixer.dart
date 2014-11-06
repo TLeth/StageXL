@@ -102,19 +102,19 @@ class SoundMixer {
     if (!soundLoadOptions.wav) availableTypes.remove("wav");
 
     var urls = new List<String>();
-    var regex = new RegExp(r"([A-Za-z0-9]+)$", multiLine:false, caseSensitive:true);
+    var regex = new RegExp(r"([A-Za-z0-9]+)$", multiLine: false, caseSensitive: true);
     var primaryMatch = regex.firstMatch(primaryUrl);
     if (primaryMatch == null) return urls;
     if (availableTypes.remove(primaryMatch.group(1))) urls.add(primaryUrl);
 
     if (soundLoadOptions.alternativeUrls != null) {
-      for(var alternativeUrl in soundLoadOptions.alternativeUrls) {
+      for (var alternativeUrl in soundLoadOptions.alternativeUrls) {
         var alternativeMatch = regex.firstMatch(alternativeUrl);
         if (alternativeMatch == null) continue;
         if (availableTypes.contains(alternativeMatch.group(1))) urls.add(alternativeUrl);
       }
     } else {
-      for(var availableType in availableTypes) {
+      for (var availableType in availableTypes) {
         urls.add(primaryUrl.replaceAll(regex, availableType));
       }
     }

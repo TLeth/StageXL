@@ -41,7 +41,7 @@ class _TextureAtlasFormatJson extends TextureAtlasFormat {
       }
 
       if (frames is Map) {
-        for(String fileName in frames.keys) {
+        for (String fileName in frames.keys) {
           var frameMap = frames[fileName] as Map;
           var frameName = getFilenameWithoutExtension(fileName);
           var taf = new TextureAtlasFrame._fromJson(textureAtlas, frameName, frameMap);
@@ -102,7 +102,7 @@ class _TextureAtlasFormatLibGDX extends TextureAtlasFormat {
       var imageBlock = true;
       var imageName = "";
 
-      while(lineIndex < lines.length) {
+      while (lineIndex < lines.length) {
 
         var line = lines[lineIndex].trim();
 
@@ -116,7 +116,7 @@ class _TextureAtlasFormatLibGDX extends TextureAtlasFormat {
           imageBlock = false;
           imageName = line;
 
-          while(++lineIndex < lines.length) {
+          while (++lineIndex < lines.length) {
 
             var imageMatch = dataRexExp.firstMatch(lines[lineIndex]);
             if (imageMatch == null) break;
@@ -140,12 +140,16 @@ class _TextureAtlasFormatLibGDX extends TextureAtlasFormat {
 
           var frameName = line;
           var frameRotation = 0;
-          var frameX = 0, frameY = 0;
-          var frameWidth = 0, frameHeight = 0;
-          var frameOriginalWidth = 0, frameOriginalHeight = 0;
-          var frameOffsetX = 0, frameOffsetY = 0;
+          var frameX = 0;
+          var frameY = 0;
+          var frameWidth = 0;
+          var frameHeight = 0;
+          var frameOriginalWidth = 0;
+          var frameOriginalHeight = 0;
+          var frameOffsetX = 0;
+          var frameOffsetY = 0;
 
-          while(++lineIndex < lines.length) {
+          while (++lineIndex < lines.length) {
 
             var frameMatch = dataRexExp.firstMatch(lines[lineIndex]);
             if (frameMatch == null) break;
@@ -170,9 +174,7 @@ class _TextureAtlasFormatLibGDX extends TextureAtlasFormat {
             }
           }
 
-          var taf = new TextureAtlasFrame(textureAtlas, frameName, frameRotation,
-              frameOriginalWidth, frameOriginalHeight, frameOffsetX, frameOffsetY,
-              frameX, frameY, frameWidth, frameHeight);
+          var taf = new TextureAtlasFrame(textureAtlas, frameName, frameRotation, frameOriginalWidth, frameOriginalHeight, frameOffsetX, frameOffsetY, frameX, frameY, frameWidth, frameHeight);
 
           textureAtlasFrames[imageName].add(taf);
         }

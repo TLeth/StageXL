@@ -12,9 +12,10 @@ class BitmapDataUpdateBatch {
   final RenderContextCanvas _renderContext;
   final Matrix _drawMatrix;
 
-  BitmapDataUpdateBatch(BitmapData bitmapData) : bitmapData = bitmapData,
-    _renderContext = new RenderContextCanvas(bitmapData.renderTexture.canvas),
-    _drawMatrix = bitmapData.renderTextureQuad.drawMatrix;
+  BitmapDataUpdateBatch(BitmapData bitmapData)
+      : bitmapData = bitmapData,
+        _renderContext = new RenderContextCanvas(bitmapData.renderTexture.canvas),
+        _drawMatrix = bitmapData.renderTextureQuad.drawMatrix;
 
   //-----------------------------------------------------------------------------------------------
 
@@ -129,8 +130,7 @@ class BitmapDataUpdateBatch {
   /**
    * See [BitmapData.drawPixels]
    */
-  void drawPixels(BitmapData source, Rectangle<int> sourceRect, Point<int> destPoint,
-                  [BlendMode blendMode]) {
+  void drawPixels(BitmapData source, Rectangle<int> sourceRect, Point<int> destPoint, [BlendMode blendMode]) {
 
     var sourceQuad = source.renderTextureQuad.cut(sourceRect);
     var renderState = new RenderState(_renderContext, _drawMatrix, 1.0, blendMode);
@@ -145,7 +145,10 @@ class BitmapDataUpdateBatch {
    */
   int getPixel32(int x, int y) {
 
-    int r = 0, g = 0, b = 0, a = 0;
+    int r = 0;
+    int a = 0;
+    int b = 0;
+    int g = 0;
 
     var rectangle = new Rectangle<int>(x, y, 1, 1);
     var renderTextureQuad = this.bitmapData.renderTextureQuad.clip(rectangle);

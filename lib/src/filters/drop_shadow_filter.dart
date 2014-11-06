@@ -10,22 +10,17 @@ class DropShadowFilter extends BitmapFilter {
   bool knockout;
   bool hideObject;
 
-  DropShadowFilter(this.distance, this.angle, this.color, this.blurX, this.blurY, {
-                   this.knockout: false, this.hideObject: false }) {
+  DropShadowFilter(this.distance, this.angle, this.color, this.blurX, this.blurY, {this.knockout: false, this.hideObject: false}) {
 
-    if (blurX < 0 || blurY < 0)
-      throw new ArgumentError("The minimum blur size is 0.");
+    if (blurX < 0 || blurY < 0) throw new ArgumentError("The minimum blur size is 0.");
 
-    if (blurX > 64 || blurY > 64)
-      throw new ArgumentError("The maximum blur size is 64.");
+    if (blurX > 64 || blurY > 64) throw new ArgumentError("The maximum blur size is 64.");
   }
 
   //-------------------------------------------------------------------------------------------------
   //-------------------------------------------------------------------------------------------------
 
-  BitmapFilter clone() => new DropShadowFilter(
-      distance, angle, color, blurX, blurY,
-      knockout: knockout, hideObject: hideObject);
+  BitmapFilter clone() => new DropShadowFilter(distance, angle, color, blurX, blurY, knockout: knockout, hideObject: hideObject);
 
   Rectangle<int> get overlap {
     int shiftX = (this.distance * cos(this.angle)).round();
@@ -42,12 +37,9 @@ class DropShadowFilter extends BitmapFilter {
 
   void apply(BitmapData bitmapData, [Rectangle<int> rectangle]) {
 
-    RenderTextureQuad renderTextureQuad = rectangle == null
-        ? bitmapData.renderTextureQuad
-        : bitmapData.renderTextureQuad.cut(rectangle);
+    RenderTextureQuad renderTextureQuad = rectangle == null ? bitmapData.renderTextureQuad : bitmapData.renderTextureQuad.cut(rectangle);
 
-    ImageData sourceImageData =
-        this.hideObject == false || this.knockout ? renderTextureQuad.getImageData() : null;
+    ImageData sourceImageData = this.hideObject == false || this.knockout ? renderTextureQuad.getImageData() : null;
 
     ImageData imageData = renderTextureQuad.getImageData();
     List<int> data = imageData.data;
@@ -143,13 +135,13 @@ class _DropShadowProgram extends _BitmapFilterProgram {
       }
       """;
 
-   void configure(int color, num shiftX, num shiftY, num pixelX, num pixelY) {
-     num r = colorGetR(color) / 255.0;
-     num g = colorGetG(color) / 255.0;
-     num b = colorGetB(color) / 255.0;
-     num a = colorGetA(color) / 255.0;
-     _renderingContext.uniform2f(_uniformLocations["uShift"], shiftX, shiftY);
-     _renderingContext.uniform2f(_uniformLocations["uPixel"], pixelX, pixelY);
-     _renderingContext.uniform4f(_uniformLocations["uColor"], r, g, b, a);
-   }
+  void configure(int color, num shiftX, num shiftY, num pixelX, num pixelY) {
+    num r = colorGetR(color) / 255.0;
+    num g = colorGetG(color) / 255.0;
+    num b = colorGetB(color) / 255.0;
+    num a = colorGetA(color) / 255.0;
+    _renderingContext.uniform2f(_uniformLocations["uShift"], shiftX, shiftY);
+    _renderingContext.uniform2f(_uniformLocations["uPixel"], pixelX, pixelY);
+    _renderingContext.uniform4f(_uniformLocations["uColor"], r, g, b, a);
+  }
 }

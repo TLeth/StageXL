@@ -47,11 +47,9 @@ class Tween implements Animatable {
 
   /// Creates a new [Tween] for the specified [tweenObject] with a duration
   /// of [time] seconds.
-  Tween(TweenObject tweenObject, num time,
-      [EaseFunction transitionFunction = TransitionFunction.linear]) :
-
-    _tweenObject = tweenObject,
-    _transitionFunction = transitionFunction {
+  Tween(TweenObject tweenObject, num time, [EaseFunction transitionFunction = TransitionFunction.linear])
+      : _tweenObject = tweenObject,
+        _transitionFunction = transitionFunction {
 
     if (_tweenObject is! TweenObject) {
       throw new ArgumentError("tweenObject");
@@ -63,7 +61,7 @@ class Tween implements Animatable {
   //----------------------------------------------------------------------------
   //----------------------------------------------------------------------------
 
-  /// Accessor for the [TweenPropertyFactory] to specify what properties 
+  /// Accessor for the [TweenPropertyFactory] to specify what properties
   /// should be animated by this [Tween].
   TweenPropertyFactory get animate => new TweenPropertyFactory._internal(this);
 
@@ -136,49 +134,55 @@ class Tween implements Animatable {
 
   /// The object that is tweened.
   TweenObject get tweenObject => _tweenObject;
-  
+
   /// The total time of this [Tween].
   num get totalTime => _totalTime;
-  
+
   /// The current time of this [Tween].
   num get currentTime => _currentTime;
 
   /// The delay this [Tween] waits until it starts animating.
-  /// 
-  /// The delay may be changed as long as the animation has not been started. 
+  ///
+  /// The delay may be changed as long as the animation has not been started.
   num get delay => _delay;
-  
+
   set delay(num value) {
     if (_started == false) {
       _currentTime = _currentTime + _delay - value;
       _delay = value;
     }
   }
-  
+
   /// Specifies if the values should be rounded to an integer.
-  /// 
+  ///
   /// Default is false.
   bool get roundToInt => _roundToInt;
 
   set roundToInt(bool value) {
     _roundToInt = value;
   }
-  
+
   /// Indicates if this [Tween] is completed.
   bool get isComplete => _currentTime >= _totalTime;
 
   //----------------------------------------------------------------------------
 
-  /// The function that is called when this [Tween] starts. 
-  /// 
+  /// The function that is called when this [Tween] starts.
+  ///
   /// This happens after the specified [delay].
-  void set onStart(void function()) { _onStart = function; }
+  void set onStart(void function()) {
+    _onStart = function;
+  }
 
-  /// The function that is called every time this [Tween] updates the properties 
+  /// The function that is called every time this [Tween] updates the properties
   /// of the [TweenObject].
-  void set onUpdate(void function()) { _onUpdate = function; }
+  void set onUpdate(void function()) {
+    _onUpdate = function;
+  }
 
   /// The function that is called when this [Tween] is completed.
-  void set onComplete(void function()) { _onComplete = function; }
+  void set onComplete(void function()) {
+    _onComplete = function;
+  }
 }
 

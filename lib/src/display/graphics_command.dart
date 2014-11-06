@@ -130,7 +130,8 @@ class _GraphicsCommandClosePath extends _GraphicsCommand {
 
 class _GraphicsCommandMoveTo extends _GraphicsCommand {
 
-  num _x, _y;
+  num _x;
+  num _y;
 
   _GraphicsCommandMoveTo(num x, num y) {
     _x = x.toDouble();
@@ -150,7 +151,8 @@ class _GraphicsCommandMoveTo extends _GraphicsCommand {
 
 class _GraphicsCommandLineTo extends _GraphicsCommand {
 
-  num _x, _y;
+  num _x;
+  num _y;
 
   _GraphicsCommandLineTo(num x, num y) {
     _x = x.toDouble();
@@ -177,8 +179,10 @@ class _GraphicsCommandLineTo extends _GraphicsCommand {
 
 class _GraphicsCommandArcTo extends _GraphicsCommand {
 
-  num _controlX, _controlY;
-  num _endX, _endY;
+  num _controlX;
+  num _controlY;
+  num _endX;
+  num _endY;
   num _radius;
 
   _GraphicsCommandArcTo(num controlX, num controlY, num endX, num endY, num radius) {
@@ -241,8 +245,10 @@ class _GraphicsCommandArcTo extends _GraphicsCommand {
 
 class _GraphicsCommandQuadraticCurveTo extends _GraphicsCommand {
 
-  num _controlX, _controlY;
-  num _endX, _endY;
+  num _controlX;
+  num _controlY;
+  num _endX;
+  num _endY;
 
   _GraphicsCommandQuadraticCurveTo(num controlX, num controlY, num endX, num endY) {
     _controlX = controlX.toDouble();
@@ -297,9 +303,12 @@ class _GraphicsCommandQuadraticCurveTo extends _GraphicsCommand {
 
 class _GraphicsCommandBezierCurveTo extends _GraphicsCommand {
 
-  num _controlX1, _controlY1;
-  num _controlX2, _controlY2;
-  num _endX, _endY;
+  num _controlX1;
+  num _controlY1;
+  num _controlX2;
+  num _controlY2;
+  num _endX;
+  num _endY;
 
   _GraphicsCommandBezierCurveTo(num controlX1, num controlY1, num controlX2, num controlY2, num endX, num endY) {
     _controlX1 = controlX1.toDouble();
@@ -371,8 +380,11 @@ class _GraphicsCommandBezierCurveTo extends _GraphicsCommand {
 
 class _GraphicsCommandArc extends _GraphicsCommand {
 
-  num _x, _y, _radius;
-  num _startAngle, _endAngle;
+  num _x;
+  num _y;
+  num _radius;
+  num _startAngle;
+  num _endAngle;
   bool _antiClockwise;
 
   _GraphicsCommandArc(num x, num y, num radius, num startAngle, num endAngle, bool antiClockwise) {
@@ -425,8 +437,10 @@ class _GraphicsCommandArc extends _GraphicsCommand {
 
 class _GraphicsCommandRect extends _GraphicsCommand {
 
-  num _x, _y;
-  num _width, _height;
+  num _x;
+  num _y;
+  num _width;
+  num _height;
 
   _GraphicsCommandRect(num x, num y, num width, num height) {
     _x = x.toDouble();
@@ -491,8 +505,7 @@ class _GraphicsCommandStrokeColor extends _GraphicsCommandStroke {
 
   String _color;
 
-  _GraphicsCommandStrokeColor(String color,
-    num lineWidth, String lineJoin, String lineCap) : super (lineWidth, lineJoin, lineCap) {
+  _GraphicsCommandStrokeColor(String color, num lineWidth, String lineJoin, String lineCap) : super(lineWidth, lineJoin, lineCap) {
 
     _color = color;
   }
@@ -512,8 +525,7 @@ class _GraphicsCommandStrokeGradient extends _GraphicsCommandStroke {
 
   GraphicsGradient _gradient;
 
-  _GraphicsCommandStrokeGradient(GraphicsGradient gradient,
-    num lineWidth, String lineJoin, String lineCap) : super (lineWidth, lineJoin, lineCap) {
+  _GraphicsCommandStrokeGradient(GraphicsGradient gradient, num lineWidth, String lineJoin, String lineCap) : super(lineWidth, lineJoin, lineCap) {
 
     _gradient = gradient;
   }
@@ -533,8 +545,7 @@ class _GraphicsCommandStrokePattern extends _GraphicsCommandStroke {
 
   GraphicsPattern _pattern;
 
-  _GraphicsCommandStrokePattern(GraphicsPattern pattern,
-    num lineWidth, String lineJoin, String lineCap) : super (lineWidth, lineJoin, lineCap) {
+  _GraphicsCommandStrokePattern(GraphicsPattern pattern, num lineWidth, String lineJoin, String lineCap) : super(lineWidth, lineJoin, lineCap) {
 
     _pattern = pattern;
   }

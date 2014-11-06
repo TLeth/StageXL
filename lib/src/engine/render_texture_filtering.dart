@@ -13,5 +13,5 @@ class RenderTextureFiltering {
   const RenderTextureFiltering(this.value);
 
   static const NEAREST = const RenderTextureFiltering(gl.NEAREST);
-  static const LINEAR  = const RenderTextureFiltering(gl.LINEAR);
+  static const LINEAR = const RenderTextureFiltering(gl.LINEAR);
 }

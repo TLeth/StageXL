@@ -27,8 +27,7 @@ abstract class RenderProgram {
 
   //-----------------------------------------------------------------------------------------------
 
-  gl.Program createProgram(gl.RenderingContext renderingContext,
-                           String vertexShaderSource, String fragmentShaderSource) {
+  gl.Program createProgram(gl.RenderingContext renderingContext, String vertexShaderSource, String fragmentShaderSource) {
 
     var program = renderingContext.createProgram();
     var vertexShader = _createShader(renderingContext, vertexShaderSource, gl.VERTEX_SHADER);

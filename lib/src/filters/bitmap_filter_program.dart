@@ -61,7 +61,7 @@ abstract class _BitmapFilterProgram extends RenderProgram {
 
       int activeAttributes = _renderingContext.getProgramParameter(_program, gl.ACTIVE_ATTRIBUTES);
 
-      for(int index = 0; index < activeAttributes; index++) {
+      for (int index = 0; index < activeAttributes; index++) {
         var activeInfo = _renderingContext.getActiveAttrib(_program, index);
         var location = _renderingContext.getAttribLocation(_program, activeInfo.name);
         _attribLocations[activeInfo.name] = location;
@@ -69,7 +69,7 @@ abstract class _BitmapFilterProgram extends RenderProgram {
 
       int activeUniforms = _renderingContext.getProgramParameter(_program, gl.ACTIVE_UNIFORMS);
 
-      for(int index = 0; index < activeUniforms; index++) {
+      for (int index = 0; index < activeUniforms; index++) {
         var activeInfo = _renderingContext.getActiveUniform(_program, index);
         var location = _renderingContext.getUniformLocation(_program, activeInfo.name);
         _uniformLocations[activeInfo.name] = location;

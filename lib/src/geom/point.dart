@@ -21,11 +21,9 @@ class Point<T extends num> implements math.Point<T> {
 
   static num distance(math.Point<num> p1, math.Point<num> p2) => p1.distanceTo(p2);
 
-  static Point<num> interpolate(math.Point<num> p1, math.Point<num> p2, num f) =>
-    new Point<num>(p2.x + (p1.x - p2.x) * f, p2.y + (p1.y - p2.y) * f);
+  static Point<num> interpolate(math.Point<num> p1, math.Point<num> p2, num f) => new Point<num>(p2.x + (p1.x - p2.x) * f, p2.y + (p1.y - p2.y) * f);
 
-  static Point<num> polar(num len, num angle) =>
-    new Point<num>(len * cos(angle), len * sin(angle));
+  static Point<num> polar(num len, num angle) => new Point<num>(len * cos(angle), len * sin(angle));
 
   //-------------------------------------------------------------------------------------------------
 

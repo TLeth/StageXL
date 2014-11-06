@@ -110,15 +110,13 @@ class RenderProgramMesh extends RenderProgram {
 
   //-----------------------------------------------------------------------------------------------
 
-  void renderMesh(int indexCount, Int16List indexList,
-                  int vertexCount, Float32List xyList, Float32List uvList,
-                  num r, num g, num b, num a) {
+  void renderMesh(int indexCount, Int16List indexList, int vertexCount, Float32List xyList, Float32List uvList, num r, num g, num b, num a) {
 
     if (indexCount > indexList.length) throw new ArgumentError("indexList");
     if (vertexCount << 1 > xyList.length) throw new ArgumentError("xyList");
     if (vertexCount << 1 > uvList.length) throw new ArgumentError("uvList");
 
-    bool indexFlush  = (_indexCount + indexCount) >= _indexList.length;
+    bool indexFlush = (_indexCount + indexCount) >= _indexList.length;
     bool vertexFlush = (_vertexCount + vertexCount) * 8 >= _vertexList.length;
 
     if (indexFlush || vertexFlush) this.flush();
@@ -133,25 +131,30 @@ class RenderProgramMesh extends RenderProgram {
     int xyListLength = xyList.length;
     int uvListLength = uvList.length;
 
-    for(int i = 0; i < indexCount; i++) {
+    for (int i = 0; i < indexCount; i++) {
       if (indexOffset > indexListLenght - 1) break;
       _indexList[indexOffset] = _vertexCount + indexList[i];
       indexOffset += 1;
     }
 
-    for(int i = 0, o1 = 0, o2 = 0; i < vertexCount; i++, o1 += 2, o2 += 2) {
-      if (vertexOffset > vertextListLength - 8) break;
-      if (o1 > xyListLength - 2) break;
-      if (o2 > uvListLength - 2) break;
-      _vertexList[vertexOffset + 0] = xyList[o1 + 0];
-      _vertexList[vertexOffset + 1] = xyList[o1 + 1];
-      _vertexList[vertexOffset + 2] = uvList[o2 + 0];
-      _vertexList[vertexOffset + 3] = uvList[o2 + 1];
-      _vertexList[vertexOffset + 4] = r;
-      _vertexList[vertexOffset + 5] = g;
-      _vertexList[vertexOffset + 6] = b;
-      _vertexList[vertexOffset + 7] = a;
-      vertexOffset += 8;
+    {
+      int i = 0;
+      int o2 = 0;
+      int o1 = 0;
+      for ( ; i < vertexCount; i++, o1 += 2, o2 += 2) {
+        if (vertexOffset > vertextListLength - 8) break;
+        if (o1 > xyListLength - 2) break;
+        if (o2 > uvListLength - 2) break;
+        _vertexList[vertexOffset + 0] = xyList[o1 + 0];
+        _vertexList[vertexOffset + 1] = xyList[o1 + 1];
+        _vertexList[vertexOffset + 2] = uvList[o2 + 0];
+        _vertexList[vertexOffset + 3] = uvList[o2 + 1];
+        _vertexList[vertexOffset + 4] = r;
+        _vertexList[vertexOffset + 5] = g;
+        _vertexList[vertexOffset + 6] = b;
+        _vertexList[vertexOffset + 7] = a;
+        vertexOffset += 8;
+      }
     }
 
     _indexCount += indexCount;

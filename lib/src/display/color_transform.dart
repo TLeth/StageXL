@@ -12,9 +12,7 @@ class ColorTransform {
   int blueOffset;
   int alphaOffset;
 
-  ColorTransform([
-    this.redMultiplier = 1.0, this.greenMultiplier = 1.0, this.blueMultiplier = 1.0, this.alphaMultiplier = 1.0,
-    this.redOffset = 0, this.greenOffset = 0, this.blueOffset = 0, this.alphaOffset = 0]);
+  ColorTransform([this.redMultiplier = 1.0, this.greenMultiplier = 1.0, this.blueMultiplier = 1.0, this.alphaMultiplier = 1.0, this.redOffset = 0, this.greenOffset = 0, this.blueOffset = 0, this.alphaOffset = 0]);
 
   //-------------------------------------------------------------------------------------------------
   //-------------------------------------------------------------------------------------------------
@@ -25,9 +23,9 @@ class ColorTransform {
 
     value = ensureInt(value);
 
-    redOffset =   (value & 0x00FF0000) >> 16;
+    redOffset = (value & 0x00FF0000) >> 16;
     greenOffset = (value & 0x0000FF00) >> 8;
-    blueOffset =  (value & 0x000000FF);
+    blueOffset = (value & 0x000000FF);
 
     redMultiplier = 0.0;
     greenMultiplier = 0.0;

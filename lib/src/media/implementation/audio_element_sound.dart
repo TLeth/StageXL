@@ -36,7 +36,8 @@ class AudioElementSound extends Sound {
       onCanPlaySubscription.cancel();
       onErrorSubscription.cancel();
       loadCompleter.complete(sound);
-    };
+    }
+    ;
 
     onError(event) {
       if (audioUrls.length > 0) {
@@ -52,7 +53,8 @@ class AudioElementSound extends Sound {
           loadCompleter.completeError(new StateError("Failed to load audio."));
         }
       }
-    };
+    }
+    ;
 
     onCanPlaySubscription = audio.onCanPlay.listen(onCanPlay);
     onErrorSubscription = audio.onError.listen(onError);
@@ -73,8 +75,7 @@ class AudioElementSound extends Sound {
     return new AudioElementSoundChannel(this, 0, 3600, loop, soundTransform);
   }
 
-  SoundChannel playSegment(num startTime, num duration, [
-                           bool loop = false, SoundTransform soundTransform]) {
+  SoundChannel playSegment(num startTime, num duration, [bool loop = false, SoundTransform soundTransform]) {
 
     if (soundTransform == null) soundTransform = new SoundTransform();
     return new AudioElementSoundChannel(this, startTime, duration, loop, soundTransform);
@@ -94,9 +95,7 @@ class AudioElementSound extends Sound {
     var audio = _audio.clone(true);
     audio.onEnded.listen(_onAudioEnded);
 
-    return audio.readyState == 0
-        ? audio.onCanPlay.first.then((_) => audio)
-        : new Future.value(audio);
+    return audio.readyState == 0 ? audio.onCanPlay.first.then((_) => audio) : new Future.value(audio);
   }
 
   void _releaseAudioElement(AudioElementSoundChannel soundChannel, AudioElement audio) {
